@@ -160,6 +160,20 @@ http:
 
 - Go 1.21 or later
 - Make (optional, for using Makefile commands)
+- SQLite development libraries:
+  ```bash
+  # Ubuntu/Debian
+  sudo apt-get install libsqlite3-dev
+
+  # CentOS/RHEL
+  sudo yum install sqlite-devel
+
+  # macOS
+  brew install sqlite3
+
+  # Windows
+  # SQLite is included in the Windows binary
+  ```
 
 ### Setup
 
