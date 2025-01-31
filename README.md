@@ -14,6 +14,30 @@ A powerful web content crawler that uses the Reader API to extract clean, readab
 
 ## Installation
 
+### Using Pre-built Binaries
+
+1. Visit the [Releases](https://github.com/ncecere/stripper/releases) page
+2. Download the appropriate binary for your system:
+   - Linux: `stripper_Linux_x86_64.tar.gz` or `stripper_Linux_arm64.tar.gz`
+   - macOS: `stripper_Darwin_x86_64.tar.gz` or `stripper_Darwin_arm64.tar.gz`
+   - Windows: `stripper_Windows_x86_64.zip`
+3. Extract the archive:
+   ```bash
+   # Linux/macOS
+   tar xzf stripper_*_*.tar.gz
+   
+   # Windows (using PowerShell)
+   Expand-Archive stripper_Windows_x86_64.zip
+   ```
+4. Move the binary to your PATH:
+   ```bash
+   # Linux/macOS
+   sudo mv stripper /usr/local/bin/
+
+   # Windows (using PowerShell as Administrator)
+   Move-Item stripper.exe C:\Windows\System32\
+   ```
+
 ### Using Go Install
 
 ```bash
