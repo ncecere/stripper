@@ -20,6 +20,7 @@ type CrawlerConfig struct {
 	OutputDir      string   `mapstructure:"output_dir"`
 	IgnoreExts     []string `mapstructure:"ignore_extensions"`
 	RescanInterval string   `mapstructure:"rescan_interval"`
+	Parallelism    int      `mapstructure:"parallelism"`
 	ReaderAPI      struct {
 		URL     string            `mapstructure:"url"`
 		Headers map[string]string `mapstructure:"headers"`
@@ -65,6 +66,7 @@ func SetDefaults(cfg *Config) {
 	cfg.Crawler.Depth = 1
 	cfg.Crawler.Format = "markdown"
 	cfg.Crawler.OutputDir = "output"
+	cfg.Crawler.Parallelism = 4
 	cfg.Crawler.IgnoreExts = []string{
 		"pdf", "jpg", "jpeg", "png", "gif",
 		"css", "js", "ico", "woff", "woff2",
@@ -91,6 +93,7 @@ func setViperDefaults(v *viper.Viper) {
 	v.SetDefault("crawler.depth", 1)
 	v.SetDefault("crawler.format", "markdown")
 	v.SetDefault("crawler.output_dir", "output")
+	v.SetDefault("crawler.parallelism", 4)
 	v.SetDefault("crawler.ignore_extensions", []string{
 		"pdf", "jpg", "jpeg", "png", "gif",
 		"css", "js", "ico", "woff", "woff2",
@@ -130,6 +133,9 @@ func MergeWithFlags(cfg *Config, flags map[string]interface{}) {
 	}
 	if v, ok := flags["reader-api-url"].(string); ok && v != "" {
 		cfg.Crawler.ReaderAPI.URL = v
+	}
+	if v, ok := flags["parallelism"].(int); ok && v != 0 {
+		cfg.Crawler.Parallelism = v
 	}
 }
 
