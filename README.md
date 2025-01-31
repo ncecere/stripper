@@ -1,31 +1,41 @@
 # Stripper - Web Content Crawler
 
-A CLI tool for systematically crawling and archiving web content using the Reader API.
+A powerful web content crawler that uses the Reader API to extract clean, readable content from web pages. Built with Go, it features recursive crawling, content archiving, and a terminal user interface.
 
 ## Features
 
-- **Automated Crawling**
-  - Recursive crawling with configurable depth
-  - Smart link discovery and tracking
-  - Batch processing with rate limiting
-  - Progress tracking and statistics
-
-- **Content Management**
-  - Stores content in markdown, text, or HTML format
-  - SQLite database for URL tracking
-  - Configurable rescan intervals
-  - Force flag for complete recrawls
-
-- **Error Handling**
-  - Robust retry logic
-  - Detailed error tracking
-  - Domain boundary enforcement
-  - Extension-based filtering
+- Recursive web crawling with configurable depth
+- Clean content extraction via Reader API
+- Multiple output formats (markdown, text, html)
+- Progress tracking with TUI
+- Configurable rescan intervals
+- Extension-based filtering
+- SQLite-based URL tracking
 
 ## Installation
 
+### Using Go Install
+
 ```bash
-go install github.com/yourusername/stripper@latest
+go install github.com/ncecere/stripper@latest
+```
+
+### Building from Source
+
+1. Clone the repository:
+```bash
+git clone https://github.com/ncecere/stripper.git
+cd stripper
+```
+
+2. Build the binary:
+```bash
+make build
+```
+
+Or manually:
+```bash
+go build -o stripper
 ```
 
 ## Usage
@@ -40,78 +50,82 @@ With options:
 stripper crawl https://example.com \
   --depth 2 \
   --format markdown \
-  --force \
-  --rescan 24h \
-  --reader-api-url https://read.tabnot.space
+  --output ./content \
+  --ignore "pdf,jpg,png" \
+  --rescan 24h
 ```
 
-### Command Line Options
+### Configuration
 
-- `--config, -c`: Path to config file (default: .stripper.yaml in current directory)
-- `--depth, -d`: Maximum crawl depth (default: 1)
-- `--format, -f`: Output format - markdown, text, or html (default: markdown)
-- `--force`: Force re-crawl of already crawled URLs
-- `--ignore, -i`: File extensions to ignore
-- `--output, -o`: Output directory for crawled content (default: output)
-- `--rescan, -r`: Rescan interval for previously crawled pages (e.g., 24h, 1h30m, 15m)
-- `--reader-api-url`: Reader API base URL (default: https://read.tabnot.space)
-
-### Configuration File
-
-The application looks for configuration in the following locations (in order):
-1. Path specified by --config flag
-2. .stripper.yaml in current directory
-3. $HOME/.stripper.yaml
-4. /etc/stripper/config.yaml
-
-See `.stripper.yaml.example` for a complete example of the configuration format.
+You can configure Stripper using a YAML configuration file. Create `.stripper.yaml` in your home directory or the current directory:
 
 ```yaml
 crawler:
   depth: 2
-  format: "markdown"
-  output_dir: "output"
-  rescan_interval: "24h"
+  format: markdown
+  output_dir: output
+  ignore_extensions:
+    - pdf
+    - jpg
+    - png
+  rescan_interval: 24h
   reader_api:
-    url: "https://read.tabnot.space"
+    url: https://read.tabnot.space
+    headers:
+      X-Respond-With: text
+
+http:
+  timeout: 30
+  retry_attempts: 3
+  retry_delay: 5
+  user_agent: "Stripper/1.0 Web Content Crawler"
+  request_delay: 1000
 ```
 
-## How It Works
+### Command Line Options
 
-1. **Link Discovery**
-   - Starts from the provided URL
-   - Recursively discovers links up to specified depth
-   - Filters external domains and ignored extensions
-
-2. **Content Processing**
-   - Uses Reader API to extract clean content
-   - Supports multiple output formats
-   - Maintains metadata about crawl status
-
-3. **Smart Recrawling**
-   - Tracks last crawl time for each URL
-   - Respects configured rescan interval
-   - Force flag available for complete recrawls
-
-4. **Progress Tracking**
-   - Real-time progress display
-   - Crawl statistics and status
-   - Detailed debug logging (with STRIPPER_DEBUG=1)
+- `--depth, -d`: Maximum crawl depth (default: 1)
+- `--format, -f`: Output format (markdown, text, html) (default: markdown)
+- `--output, -o`: Output directory (default: output)
+- `--ignore, -i`: File extensions to ignore
+- `--rescan, -r`: Rescan interval (e.g., 24h, 1h30m)
+- `--force`: Force re-crawl of already crawled URLs
+- `--config, -c`: Path to config file
+- `--reader-api-url`: Reader API base URL
 
 ## Development
 
-Build from source:
+### Requirements
+
+- Go 1.21 or later
+- Make (optional, for using Makefile commands)
+
+### Setup
+
+1. Install dependencies:
 ```bash
-git clone https://github.com/yourusername/stripper.git
-cd stripper
-go build
+go mod download
 ```
 
-Run with debug logging:
+2. Run tests:
 ```bash
-STRIPPER_DEBUG=1 ./stripper crawl https://example.com
+make test
 ```
+
+### Available Make Commands
+
+- `make`: Run lint, test, and build
+- `make build`: Build the binary
+- `make test`: Run tests
+- `make coverage`: Generate test coverage report
+- `make lint`: Run linter
+- `make clean`: Remove binary and artifacts
+- `make install`: Install binary to GOPATH
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License
+
+## Author
+
+Nick Cecere (@ncecere)
