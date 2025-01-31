@@ -25,9 +25,21 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-aarch64-linux-gnu
-          sudo apt-get install -y libsqlite3-dev
-          sudo apt-get install -y clang llvm gcc-multilib
+          sudo apt-get install -y \
+            gcc-aarch64-linux-gnu \
+            g++-aarch64-linux-gnu \
+            libsqlite3-dev \
+            clang llvm gcc-multilib
+
+      - name: Set up cross-compilation environment
+        run: |
+          echo "GOOS=linux" >> $GITHUB_ENV
+          echo "GOARCH=arm64" >> $GITHUB_ENV
+          echo "CC=aarch64-linux-gnu-gcc" >> $GITHUB_ENV
+          echo "CXX=aarch64-linux-gnu-g++" >> $GITHUB_ENV
+          echo "PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig" >> $GITHUB_ENV
+          echo "Adding cross-compiler to PATH"
+          echo "/usr/aarch64-linux-gnu/bin" >> $GITHUB_PATH
 
       - name: Set up OSXCross for macOS cross-compilation
         run: |
