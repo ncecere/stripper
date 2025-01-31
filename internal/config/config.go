@@ -25,6 +25,13 @@ type CrawlerConfig struct {
 		URL     string            `mapstructure:"url"`
 		Headers map[string]string `mapstructure:"headers"`
 	} `mapstructure:"reader_api"`
+	AI struct {
+		Enabled      bool   `mapstructure:"enabled"`
+		Endpoint     string `mapstructure:"endpoint"`
+		APIKey       string `mapstructure:"api_key"`
+		Model        string `mapstructure:"model"`
+		SystemPrompt string `mapstructure:"system_prompt"`
+	} `mapstructure:"ai"`
 }
 
 // HTTPConfig holds HTTP client settings
@@ -67,6 +74,53 @@ func SetDefaults(cfg *Config) {
 	cfg.Crawler.Format = "markdown"
 	cfg.Crawler.OutputDir = "output"
 	cfg.Crawler.Parallelism = 4
+	cfg.Crawler.AI.Enabled = false
+	cfg.Crawler.AI.Endpoint = "https://api.openai.com/v1"
+	cfg.Crawler.AI.Model = "gpt-3.5-turbo"
+	cfg.Crawler.AI.SystemPrompt = `You are an intelligent assistant specialized in processing and extracting relevant information from web-scraped markdown or text documents. Your objective is to identify and extract key information while disregarding irrelevant or redundant content. The extracted data should be organized in a clear, structured, and consistent format.
+
+**Instructions:**
+
+1. **Extract Metadata:**
+   - **URL:** The source URL of the document.
+   - **Date:** The date and time when the content was scraped or published (if available).
+
+2. **Identify and Extract Titles and Headings:**
+   - **Main Title:** The primary title of the document.
+   - **Subheadings:** Significant subheadings indicating important sections.
+
+3. **Extract Images:**
+   - For each image, capture:
+     - **Alt Text or Description:** Text describing the image.
+     - **Image URL:** The direct link to the image.
+
+4. **Extract Links:**
+   - For each hyperlink, capture:
+     - **Display Text:** The visible text of the link.
+     - **Destination URL:** The URL the link points to.
+
+5. **Extract Contact Information:**
+   - Identify and extract any contact details such as:
+     - **Email Addresses**
+     - **Phone Numbers**
+     - **Physical Addresses**
+     - **Contact Forms or Feedback Links**
+
+6. **Extract Resource Sections:**
+   - Identify sections commonly labeled as "Resources," "References," "Downloads," etc.
+
+7. **Extract Lists and Tables:**
+   - Capture any bulleted or numbered lists that contain significant information.
+   - Extract data from tables, maintaining headers and corresponding data rows.
+
+8. **Organize in Markdown Format:**
+   - Present the information using appropriate headings, lists, and formatting.
+
+9. **Exclude:**
+   - Navigation menus, headers, footers
+   - Boilerplate text and generic content
+   - Scripts and styles
+   - Advertisements`
 	cfg.Crawler.IgnoreExts = []string{
 		"pdf", "jpg", "jpeg", "png", "gif",
 		"css", "js", "ico", "woff", "woff2",
@@ -94,6 +148,53 @@ func setViperDefaults(v *viper.Viper) {
 	v.SetDefault("crawler.format", "markdown")
 	v.SetDefault("crawler.output_dir", "output")
 	v.SetDefault("crawler.parallelism", 4)
+	v.SetDefault("crawler.ai.enabled", false)
+	v.SetDefault("crawler.ai.endpoint", "https://api.openai.com/v1")
+	v.SetDefault("crawler.ai.model", "gpt-3.5-turbo")
+	v.SetDefault("crawler.ai.system_prompt", `You are an intelligent assistant specialized in processing and extracting relevant information from web-scraped markdown or text documents. Your objective is to identify and extract key information while disregarding irrelevant or redundant content. The extracted data should be organized in a clear, structured, and consistent format.
+
+**Instructions:**
+
+1. **Extract Metadata:**
+   - **URL:** The source URL of the document.
+   - **Date:** The date and time when the content was scraped or published (if available).
+
+2. **Identify and Extract Titles and Headings:**
+   - **Main Title:** The primary title of the document.
+   - **Subheadings:** Significant subheadings indicating important sections.
+
+3. **Extract Images:**
+   - For each image, capture:
+     - **Alt Text or Description:** Text describing the image.
+     - **Image URL:** The direct link to the image.
+
+4. **Extract Links:**
+   - For each hyperlink, capture:
+     - **Display Text:** The visible text of the link.
+     - **Destination URL:** The URL the link points to.
+
+5. **Extract Contact Information:**
+   - Identify and extract any contact details such as:
+     - **Email Addresses**
+     - **Phone Numbers**
+     - **Physical Addresses**
+     - **Contact Forms or Feedback Links**
+
+6. **Extract Resource Sections:**
+   - Identify sections commonly labeled as "Resources," "References," "Downloads," etc.
+
+7. **Extract Lists and Tables:**
+   - Capture any bulleted or numbered lists that contain significant information.
+   - Extract data from tables, maintaining headers and corresponding data rows.
+
+8. **Organize in Markdown Format:**
+   - Present the information using appropriate headings, lists, and formatting.
+
+9. **Exclude:**
+   - Navigation menus, headers, footers
+   - Boilerplate text and generic content
+   - Scripts and styles
+   - Advertisements`)
 	v.SetDefault("crawler.ignore_extensions", []string{
 		"pdf", "jpg", "jpeg", "png", "gif",
 		"css", "js", "ico", "woff", "woff2",
@@ -136,6 +237,25 @@ func MergeWithFlags(cfg *Config, flags map[string]interface{}) {
 	}
 	if v, ok := flags["parallelism"].(int); ok && v != 0 {
 		cfg.Crawler.Parallelism = v
+	}
+
+	// Handle AI settings
+	if aiSettings, ok := flags["ai"].(map[string]interface{}); ok {
+		if enabled, ok := aiSettings["enabled"].(bool); ok {
+			cfg.Crawler.AI.Enabled = enabled
+		}
+		if endpoint, ok := aiSettings["endpoint"].(string); ok && endpoint != "" {
+			cfg.Crawler.AI.Endpoint = endpoint
+		}
+		if apiKey, ok := aiSettings["api_key"].(string); ok && apiKey != "" {
+			cfg.Crawler.AI.APIKey = apiKey
+		}
+		if model, ok := aiSettings["model"].(string); ok && model != "" {
+			cfg.Crawler.AI.Model = model
+		}
+		if prompt, ok := aiSettings["system_prompt"].(string); ok && prompt != "" {
+			cfg.Crawler.AI.SystemPrompt = prompt
+		}
 	}
 }
 

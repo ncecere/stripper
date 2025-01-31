@@ -11,6 +11,21 @@ A powerful web content crawler that uses the Reader API to extract clean, readab
 - Configurable rescan intervals
 - Extension-based filtering
 - SQLite-based URL tracking
+- AI-powered content summarization with support for multiple models
+- Configurable rate limiting and retry strategies for AI processing
+- Parallel processing with adjustable batch sizes
+
+## AI Features
+
+- Generate AI summaries of crawled content
+- Support for multiple AI models:
+  - deepseek-r1 (faster, lower latency)
+  - grog-llama-3.1-8b (balanced)
+  - grog-llama-3.2-3b (higher quality)
+- Intelligent rate limiting and retry strategies
+- Parallel processing with configurable batch sizes
+- Separate storage for original content and AI summaries
+- Flat file organization for easy navigation
 
 ## Installation
 
@@ -134,6 +149,13 @@ crawler:
     url: https://read.tabnot.space
     headers:
       X-Respond-With: text
+  
+  ai:
+    enabled: true
+    endpoint: "https://ai.example.com/v1"
+    api_key: "your-api-key"
+    model: "deepseek-r1"  # or grog-llama-3.1-8b, grog-llama-3.2-3b
+    system_prompt: "Summarize the following content:"
 
 http:
   timeout: 30
@@ -153,6 +175,11 @@ http:
 - `--force`: Force re-crawl of already crawled URLs
 - `--config, -c`: Path to config file
 - `--reader-api-url`: Reader API base URL
+- `--ai`: Enable AI summarization
+- `--ai-endpoint`: AI API endpoint URL
+- `--ai-key`: AI API key
+- `--ai-model`: AI model to use
+- `--ai-system-prompt`: System prompt for AI summarization
 
 ## Development
 
