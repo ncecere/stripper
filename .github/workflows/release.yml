@@ -12,7 +12,7 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -25,31 +25,26 @@ jobs:
       - name: Install Linux cross-compilation tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
-            gcc-multilib g++-multilib \
-            gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+          sudo apt-get install -y gcc-multilib g++-multilib
 
-          echo "/usr/bin" >> $GITHUB_PATH  # Ensure toolchain is in PATH
-          which aarch64-linux-gnu-gcc && aarch64-linux-gnu-gcc --version
-
-      - name: Install macOS cross-compilation tools (osxcross)
+      - name: Install OSXCross
         run: |
+          # Install OSXCross dependencies
           sudo apt-get install -y clang llvm-dev libxml2-dev uuid-dev libssl-dev bash patch make tar xz-utils bzip2 gzip sed cpio libbz2-dev
 
-          git clone https://github.com/tpoechtrager/osxcross.git
+          # Get OSXCross
+          git clone https://github.com/tpoechtrager/osxcross
           cd osxcross
 
+          # Get MacOS SDK
           wget -q https://github.com/joseluisq/macosx-sdks/releases/download/12.3/MacOSX12.3.sdk.tar.xz -O tarballs/MacOSX12.3.sdk.tar.xz
 
+          # Build OSXCross (takes a while)
           UNATTENDED=1 ./build.sh
 
+          # Add to PATH
           echo "$PWD/target/bin" >> $GITHUB_PATH
-
-      - name: Verify Compiler Availability
-        run: |
-          which aarch64-linux-gnu-gcc || echo "aarch64-linux-gnu-gcc NOT FOUND"
-          which x86_64-apple-darwin20-clang || echo "macOS Clang NOT FOUND"
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
@@ -60,4 +55,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CGO_ENABLED: 1
-          PATH: /usr/lib/ccache:/usr/local/opt/ccache/libexec:${{ env.PATH }}
+          PATH: /usr/lib/ccache:/usr/local/opt/ccache/libexec:${{ github.workspace }}/osxcross/target/bin:${{ env.PATH }}
