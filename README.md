@@ -16,6 +16,12 @@ A powerful web content crawler that uses the Reader API to extract clean, readab
 
 ### Using Pre-built Binaries
 
+The application comes in two variants:
+- **CGO-enabled builds** (recommended): Full featured with SQLite support
+  - Available for Linux and macOS on x86_64
+- **SQLite-free builds**: Lighter builds without SQLite support
+  - Available for all platforms including ARM64
+
 #### Linux (x86_64)
 ```bash
 # Download latest release
@@ -33,6 +39,8 @@ stripper --version
 ```
 
 #### macOS (Intel/M1)
+
+Note: SQLite support is only available in x86_64 builds. ARM64 builds use a SQLite-free version.
 ```bash
 # For Intel Macs (x86_64)
 curl -LO $(curl -s https://api.github.com/repos/ncecere/stripper/releases/latest | grep -o -E "https://.*stripper_Darwin_x86_64.tar.gz")
@@ -160,7 +168,7 @@ http:
 
 - Go 1.21 or later
 - Make (optional, for using Makefile commands)
-- SQLite development libraries:
+- SQLite development libraries (only needed for CGO-enabled builds):
   ```bash
   # Ubuntu/Debian
   sudo apt-get install libsqlite3-dev
