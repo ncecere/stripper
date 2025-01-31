@@ -25,9 +25,20 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi
+          sudo apt-get install -y gcc-aarch64-linux-gnu
           sudo apt-get install -y libsqlite3-dev
-          sudo apt-get install -y gcc-multilib
+          sudo apt-get install -y clang llvm gcc-multilib
+
+      - name: Set up OSXCross for macOS cross-compilation
+        run: |
+          mkdir -p /tmp/osxcross
+          cd /tmp/osxcross
+          wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.tar.gz
+          tar xzf master.tar.gz
+          cd osxcross-master
+          wget -P tarballs https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz
+          UNATTENDED=yes OSX_VERSION_MIN=10.15 ./build.sh
+          echo "/tmp/osxcross/osxcross-master/target/bin" >> $GITHUB_PATH
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
