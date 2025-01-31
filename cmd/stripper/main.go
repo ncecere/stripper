@@ -12,6 +12,7 @@ import (
 
 	"github.com/ncecere/stripper/internal/crawler"
 	"github.com/ncecere/stripper/internal/storage"
+	"github.com/ncecere/stripper/internal/tui"
 	"github.com/ncecere/stripper/pkg/reader"
 )
 
@@ -56,16 +57,13 @@ var crawlCmd = &cobra.Command{
 		// Initialize crawler
 		c := crawler.NewCrawler(readerClient, store)
 
-		// Print initial message
-		fmt.Fprintf(os.Stderr, "Content will be saved to: %s\n\n", outputDir)
+		// Print initial information
+		fmt.Printf("Content will be saved to: %s, Crawling: %s, Depth: %d\n\n", outputDir, url, maxDepth)
 
-		// Create a channel for stats updates
+		// Create channels for communication
 		statsChan := make(chan crawler.Stats, 100)
-		defer close(statsChan)
-
-		// Create a channel for completion
 		doneChan := make(chan bool)
-		defer close(doneChan)
+		errChan := make(chan error, 1)
 
 		// Set up progress callback
 		c.SetProgressCallback(func(stats crawler.Stats) {
@@ -81,7 +79,6 @@ var crawlCmd = &cobra.Command{
 		defer cancel()
 
 		// Start crawling in a goroutine
-		errCh := make(chan error, 1)
 		go func() {
 			config := crawler.Config{
 				BatchSize:    batchSize,
@@ -94,36 +91,21 @@ var crawlCmd = &cobra.Command{
 				Format:       reader.Format(format),
 			}
 			err := c.Start(ctx, config)
-			errCh <- err
+			errChan <- err
 			doneChan <- true
 		}()
 
-		// Print progress updates
-		for {
-			select {
-			case stats := <-statsChan:
-				var percentage float64
-				if stats.TotalURLs > 0 {
-					percentage = float64(stats.URLsProcessed) / float64(stats.TotalURLs) * 100
-				}
-
-				// Print the progress with padding for clean overwrites
-				fmt.Fprintf(os.Stderr, "\r%d/%d URLs (%.1f%%)      ",
-					stats.URLsProcessed,
-					stats.TotalURLs,
-					percentage,
-				)
-
-			case <-doneChan:
-				fmt.Fprintf(os.Stderr, "\n")
-				return nil
-
-			case err := <-errCh:
-				if err != nil {
-					return fmt.Errorf("crawler error: %w", err)
-				}
-			}
+		// Start the TUI
+		if err := tui.StartTUI(url, statsChan, doneChan); err != nil {
+			return fmt.Errorf("TUI error: %w", err)
 		}
+
+		// Check for any crawler errors
+		if err := <-errChan; err != nil {
+			return fmt.Errorf("crawler error: %w", err)
+		}
+
+		return nil
 	},
 }
 
