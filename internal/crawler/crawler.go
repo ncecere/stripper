@@ -264,17 +264,22 @@ func (c *Crawler) collectLinks() error {
 // processLinks processes queued links using the Reader API
 func (c *Crawler) processLinks() error {
 	const (
-		batchSize      = 5 // Reduced batch size
+		batchSize      = 10 // Increased batch size for more parallelism
 		delay          = 1 * time.Second
-		maxRetries     = 5                // Increased retries
-		aiRateLimit    = 5 * time.Second  // Increased delay between AI requests
-		backoffInitial = 5 * time.Second  // Increased initial backoff
-		backoffMax     = 60 * time.Second // Increased max backoff
+		maxRetries     = 5
+		aiRateLimit    = 2 * time.Second // Reduced delay between AI requests
+		backoffInitial = 2 * time.Second // Reduced initial backoff
+		backoffMax     = 30 * time.Second
 	)
 
-	// Create a rate limiter for AI requests
-	aiLimiter := time.NewTicker(aiRateLimit)
-	defer aiLimiter.Stop()
+	// Create multiple rate limiters for AI requests
+	numLimiters := 3 // Allow up to 3 concurrent AI requests
+	aiLimiters := make([]*time.Ticker, numLimiters)
+	for i := 0; i < numLimiters; i++ {
+		aiLimiters[i] = time.NewTicker(aiRateLimit)
+		defer aiLimiters[i].Stop()
+	}
+	currentLimiter := 0
 
 	for {
 		// Get next batch of links
@@ -336,8 +341,10 @@ func (c *Crawler) processLinks() error {
 				if c.aiEnabled && c.aiClient != nil {
 					debugf("Attempting AI summary for %s", link.URL)
 
-					// Wait for rate limiter
-					<-aiLimiter.C
+					// Get next available rate limiter
+					limiter := aiLimiters[currentLimiter]
+					currentLimiter = (currentLimiter + 1) % numLimiters
+					<-limiter.C
 
 					// Try with exponential backoff
 					backoff := backoffInitial
