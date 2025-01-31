@@ -57,6 +57,10 @@ jobs:
             cpio \
             libbz2-dev
 
+          # Create temp directory for osxcross
+          OSXCROSS_DIR=$(mktemp -d)
+          cd $OSXCROSS_DIR
+
           # Clone osxcross
           git clone https://github.com/tpoechtrager/osxcross
           cd osxcross
@@ -69,6 +73,7 @@ jobs:
 
           # Add osxcross toolchain to PATH
           echo "$PWD/target/bin" >> $GITHUB_PATH
+          cd $GITHUB_WORKSPACE
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
@@ -81,4 +86,4 @@ jobs:
           # Force CGO on for the entire run; individual builds also set CGO_ENABLED=1
           CGO_ENABLED: 1
           # Prepend osxcross binaries to PATH so that o64-clang, oa64-clang, etc. are found
-          PATH: /usr/bin:/usr/lib/ccache:/usr/local/opt/ccache/libexec:${{ github.workspace }}/osxcross/target/bin:${{ env.PATH }}
+          PATH: /usr/bin:/usr/lib/ccache:/usr/local/opt/ccache/libexec:${{ runner.temp }}/*/osxcross/target/bin:${{ env.PATH }}
