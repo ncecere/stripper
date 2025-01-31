@@ -22,6 +22,7 @@ A powerful web content crawler that uses the Reader API to extract clean, readab
   - deepseek-r1 (faster, lower latency)
   - grog-llama-3.1-8b (balanced)
   - grog-llama-3.2-3b (higher quality)
+  - mistral-7b-instruct (fast, high quality)
 - Intelligent rate limiting and retry strategies
 - Parallel processing with configurable batch sizes
 - Separate storage for original content and AI summaries
@@ -154,7 +155,7 @@ crawler:
     enabled: true
     endpoint: "https://ai.example.com/v1"
     api_key: "your-api-key"
-    model: "deepseek-r1"  # or grog-llama-3.1-8b, grog-llama-3.2-3b
+    model: "deepseek-r1"  # or grog-llama-3.1-8b, grog-llama-3.2-3b, mistral-7b-instruct
     system_prompt: "Summarize the following content:"
 
 http:

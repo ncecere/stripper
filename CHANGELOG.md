@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - deepseek-r1 (faster processing)
   - grog-llama-3.1-8b (balanced)
   - grog-llama-3.2-3b (higher quality)
+  - mistral-7b-instruct (fast, high quality)
 - Intelligent rate limiting with exponential backoff
 - Configurable batch processing for AI requests
 - Separate storage for AI summaries with flat file organization
