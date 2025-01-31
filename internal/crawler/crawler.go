@@ -31,6 +31,7 @@ type Crawler struct {
 	db             *database.DB
 	ui             *tea.Program
 	rescanInterval time.Duration
+	readerAPIURL   string
 }
 
 // Options configures the crawler behavior
@@ -42,6 +43,7 @@ type Options struct {
 	Ignore         []string
 	OutputDir      string
 	RescanInterval time.Duration
+	ReaderAPIURL   string
 }
 
 // New creates a new Crawler instance
@@ -64,6 +66,12 @@ func New(opts Options) (*Crawler, error) {
 		return nil, fmt.Errorf("failed to initialize database: %w", err)
 	}
 
+	// Set default Reader API URL if not provided
+	readerAPIURL := opts.ReaderAPIURL
+	if readerAPIURL == "" {
+		readerAPIURL = "https://read.tabnot.space"
+	}
+
 	// Create crawler instance
 	c := &Crawler{
 		client:         &http.Client{},
@@ -76,6 +84,7 @@ func New(opts Options) (*Crawler, error) {
 		storage:        store,
 		db:             db,
 		rescanInterval: opts.RescanInterval,
+		readerAPIURL:   readerAPIURL,
 	}
 
 	// Initialize TUI
@@ -325,7 +334,7 @@ func (c *Crawler) collectLinksFromURL(targetURL string, currentDepth int) error 
 
 // fetch retrieves content from a URL using the Reader API
 func (c *Crawler) fetch(targetURL string) (string, error) {
-	readerURL := fmt.Sprintf("https://read.tabnot.space/%s", targetURL)
+	readerURL := fmt.Sprintf("%s/%s", strings.TrimRight(c.readerAPIURL, "/"), targetURL)
 	req, err := http.NewRequest("GET", readerURL, nil)
 	if err != nil {
 		return "", fmt.Errorf("error creating request: %w", err)
@@ -346,15 +355,4 @@ func (c *Crawler) fetch(targetURL string) (string, error) {
 	}
 
 	return string(body), nil
-}
-
-// shouldIgnoreURL checks if a URL should be ignored based on its extension
-func shouldIgnoreURL(urlStr string, ignoreExts []string) bool {
-	lower := strings.ToLower(urlStr)
-	for _, ext := range ignoreExts {
-		if strings.HasSuffix(lower, "."+strings.TrimPrefix(ext, ".")) {
-			return true
-		}
-	}
-	return false
 }

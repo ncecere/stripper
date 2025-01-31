@@ -4,44 +4,76 @@
 # Crawler settings
 crawler:
   # Maximum depth to crawl (default: 1)
+  # - 1: Only crawl the initial URL
+  # - 2: Crawl initial URL and all direct links
+  # - 3+: Continue following links to specified depth
   depth: 2
   
   # Output format: markdown, text, or html (default: markdown)
+  # - markdown: Clean, formatted markdown content
+  # - text: Plain text without formatting
+  # - html: Original HTML content
   format: "markdown"
   
   # Output directory for crawled content (default: output)
+  # Content will be organized by domain and URL path
   output_dir: "output"
   
   # File extensions to ignore during crawling
+  # Add any extensions you want to skip
   ignore_extensions:
+    # Documents
     - pdf
-    - jpg
-    - png
-    - gif
-    - zip
-    - exe
     - doc
     - docx
     - xls
     - xlsx
+    
+    # Images
+    - jpg
+    - jpeg
+    - png
+    - gif
+    - ico
+    
+    # Web assets
     - css
     - js
-    - ico
     - woff
     - woff2
     - ttf
     - eot
+    
+    # Media
     - mp4
     - webm
     - mp3
     - wav
+    
+    # Archives
+    - zip
     - tar
     - gz
     - rar
 
   # Rescan interval for previously crawled pages (e.g., 24h, 1h30m, 15m)
+  # Format examples:
+  # - 24h: 24 hours
+  # - 1h30m: 1 hour and 30 minutes
+  # - 15m: 15 minutes
   # Pages older than this will be recrawled to check for changes
   rescan_interval: "24h"
+
+  # Reader API configuration
+  reader_api:
+    # Base URL for the Reader API (default: https://read.tabnot.space)
+    # Change this if you're using a different Reader API endpoint
+    url: "https://read.tabnot.space"
+    
+    # Additional headers to send with requests
+    headers:
+      # Response format matches the global format setting above
+      X-Respond-With: "text"  # Can be text, markdown, or html
 
 # HTTP client settings
 http:

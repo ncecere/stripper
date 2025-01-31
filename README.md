@@ -1,28 +1,31 @@
 # Stripper - Web Content Crawler
 
-A command-line tool for systematically crawling and archiving web content from specified domains. It uses the Reader API to retrieve clean, formatted content and stores it locally.
+A CLI tool for systematically crawling and archiving web content using the Reader API.
 
 ## Features
 
-- Domain-specific crawling with configurable depth
-- Clean content extraction via Reader API
-- Multiple output formats (text, markdown, html)
-- SQLite-based link tracking and crawl history
-- Rate limiting and polite crawling
-- Real-time progress monitoring via TUI
+- **Automated Crawling**
+  - Recursive crawling with configurable depth
+  - Smart link discovery and tracking
+  - Batch processing with rate limiting
+  - Progress tracking and statistics
+
+- **Content Management**
+  - Stores content in markdown, text, or HTML format
+  - SQLite database for URL tracking
+  - Configurable rescan intervals
+  - Force flag for complete recrawls
+
+- **Error Handling**
+  - Robust retry logic
+  - Detailed error tracking
+  - Domain boundary enforcement
+  - Extension-based filtering
 
 ## Installation
 
 ```bash
 go install github.com/yourusername/stripper@latest
-```
-
-Or build from source:
-
-```bash
-git clone https://github.com/yourusername/stripper.git
-cd stripper
-go build -o stripper
 ```
 
 ## Usage
@@ -38,169 +41,77 @@ stripper crawl https://example.com \
   --depth 2 \
   --format markdown \
   --force \
-  --ignore pdf,jpg,css \
-  --output ./archive
+  --rescan 24h \
+  --reader-api-url https://read.tabnot.space
 ```
 
-### Command Line Flags
+### Command Line Options
 
-| Flag | Description | Type | Default | Example |
-|------|-------------|------|---------|---------|
-| `--depth`, `-d` | Maximum crawl depth from starting URL | int | 1 | `--depth 2` |
-| `--format`, `-f` | Output format (markdown, text, html) | string | "markdown" | `--format text` |
-| `--force` | Force re-crawl of already crawled URLs | bool | false | `--force` |
-| `--ignore`, `-i` | File extensions to ignore | []string | [pdf,jpg,jpeg,png,gif,css,js,ico,woff,woff2,ttf,eot,mp4,webm,mp3,wav,zip,tar,gz,rar] | `--ignore pdf,jpg,css` |
-| `--output`, `-o` | Output directory for crawled content | string | "output" | `--output ./archive` |
-| `--config`, `-c` | Path to config file | string | ".stripper.yaml" | `--config custom.yaml` |
+- `--config, -c`: Path to config file (default: .stripper.yaml in current directory)
+- `--depth, -d`: Maximum crawl depth (default: 1)
+- `--format, -f`: Output format - markdown, text, or html (default: markdown)
+- `--force`: Force re-crawl of already crawled URLs
+- `--ignore, -i`: File extensions to ignore
+- `--output, -o`: Output directory for crawled content (default: output)
+- `--rescan, -r`: Rescan interval for previously crawled pages (e.g., 24h, 1h30m, 15m)
+- `--reader-api-url`: Reader API base URL (default: https://read.tabnot.space)
 
 ### Configuration File
 
-The application supports configuration via:
-1. `.stripper.yaml` in the current directory
-2. `.stripper.yaml` in the home directory
-3. Custom path specified with `--config` flag
+The application looks for configuration in the following locations (in order):
+1. Path specified by --config flag
+2. .stripper.yaml in current directory
+3. $HOME/.stripper.yaml
+4. /etc/stripper/config.yaml
 
-Example configuration:
+See `.stripper.yaml.example` for a complete example of the configuration format.
 
 ```yaml
-# Crawler settings
 crawler:
-  # Maximum depth to crawl (default: 1)
   depth: 2
-  
-  # Output format: markdown, text, or html (default: markdown)
   format: "markdown"
-  
-  # Output directory for crawled content (default: output)
   output_dir: "output"
-  
-  # File extensions to ignore during crawling
-  ignore_extensions:
-    - pdf
-    - jpg
-    - png
-    - gif
-    - zip
-    - exe
-    - doc
-    - docx
-    - xls
-    - xlsx
-
-# HTTP client settings
-http:
-  # Request timeout in seconds
-  timeout: 30
-  
-  # Number of retry attempts for failed requests
-  retry_attempts: 3
-  
-  # Delay between retries in seconds
-  retry_delay: 5
-  
-  # User agent string for requests
-  user_agent: "Stripper/1.0 Web Content Crawler"
-  
-  # Delay between requests in milliseconds
-  request_delay: 1000
+  rescan_interval: "24h"
+  reader_api:
+    url: "https://read.tabnot.space"
 ```
 
-### Examples
+## How It Works
 
-1. Basic crawl of a website (stays within the domain):
+1. **Link Discovery**
+   - Starts from the provided URL
+   - Recursively discovers links up to specified depth
+   - Filters external domains and ignored extensions
+
+2. **Content Processing**
+   - Uses Reader API to extract clean content
+   - Supports multiple output formats
+   - Maintains metadata about crawl status
+
+3. **Smart Recrawling**
+   - Tracks last crawl time for each URL
+   - Respects configured rescan interval
+   - Force flag available for complete recrawls
+
+4. **Progress Tracking**
+   - Real-time progress display
+   - Crawl statistics and status
+   - Detailed debug logging (with STRIPPER_DEBUG=1)
+
+## Development
+
+Build from source:
 ```bash
-stripper crawl https://it.ufl.edu
-# Only crawls it.ufl.edu domain, ignores links to other domains
+git clone https://github.com/yourusername/stripper.git
+cd stripper
+go build
 ```
 
-2. Deep crawl with text output:
+Run with debug logging:
 ```bash
-stripper crawl https://it.ufl.edu \
-  --depth 3 \
-  --format text \
-  --output ./docs
-# Crawls up to 3 levels deep within it.ufl.edu
+STRIPPER_DEBUG=1 ./stripper crawl https://example.com
 ```
-
-3. Force re-crawl with debug logging:
-```bash
-STRIPPER_DEBUG=1 stripper crawl https://it.ufl.edu \
-  --force \
-  --format text
-# Shows detailed debug output during crawling
-```
-
-4. Crawl with custom ignore patterns and rate limiting:
-```bash
-stripper crawl https://it.ufl.edu \
-  --ignore pdf,jpg,doc,docx \
-  --depth 2
-# Respects rate limiting from .stripper.yaml
-```
-
-5. Using configuration files:
-```bash
-# Default config location
-cp .stripper.yaml.example .stripper.yaml
-stripper crawl https://it.ufl.edu
-
-# Custom config location
-cp .stripper.yaml.example my-custom-config.yaml
-# Edit settings in my-custom-config.yaml
-stripper crawl https://it.ufl.edu --config my-custom-config.yaml
-
-# Override config file settings with flags
-stripper crawl https://it.ufl.edu \
-  --config my-custom-config.yaml \
-  --depth 3  # Overrides depth from config file
-```
-
-### Debug Mode
-
-Enable debug logging by setting the `STRIPPER_DEBUG` environment variable:
-
-```bash
-STRIPPER_DEBUG=1 stripper crawl https://example.com
-```
-
-## Output Format
-
-Content is saved with metadata headers:
-```text
-URL: https://example.com/page
-Date: 2025-01-31T07:36:47-05:00
-
-[Content follows here...]
-```
-
-Files are saved using URL-based paths in the output directory:
-```
-output/
-  example.com/
-    index.txt
-    about.txt
-    docs/
-      getting-started.txt
-```
-
-## Database
-
-The application uses SQLite to track:
-- Crawled URLs and their status
-- Last crawl dates
-- Error history
-- Crawl statistics
-
-The database is stored in `{output_dir}/crawler.db`.
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - see LICENSE file for details.
