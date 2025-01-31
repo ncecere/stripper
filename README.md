@@ -51,10 +51,16 @@ stripper crawl https://example.com \
 | `--force` | Force re-crawl of already crawled URLs | bool | false | `--force` |
 | `--ignore`, `-i` | File extensions to ignore | []string | [pdf,jpg,jpeg,png,gif,css,js,ico,woff,woff2,ttf,eot,mp4,webm,mp3,wav,zip,tar,gz,rar] | `--ignore pdf,jpg,css` |
 | `--output`, `-o` | Output directory for crawled content | string | "output" | `--output ./archive` |
+| `--config`, `-c` | Path to config file | string | ".stripper.yaml" | `--config custom.yaml` |
 
 ### Configuration File
 
-The application supports configuration via `.stripper.yaml` in the current directory or home directory. Example configuration:
+The application supports configuration via:
+1. `.stripper.yaml` in the current directory
+2. `.stripper.yaml` in the home directory
+3. Custom path specified with `--config` flag
+
+Example configuration:
 
 ```yaml
 # Crawler settings
@@ -132,12 +138,21 @@ stripper crawl https://it.ufl.edu \
 # Respects rate limiting from .stripper.yaml
 ```
 
-5. Using configuration file:
+5. Using configuration files:
 ```bash
-# Create .stripper.yaml in your directory
+# Default config location
 cp .stripper.yaml.example .stripper.yaml
-# Edit settings as needed
 stripper crawl https://it.ufl.edu
+
+# Custom config location
+cp .stripper.yaml.example my-custom-config.yaml
+# Edit settings in my-custom-config.yaml
+stripper crawl https://it.ufl.edu --config my-custom-config.yaml
+
+# Override config file settings with flags
+stripper crawl https://it.ufl.edu \
+  --config my-custom-config.yaml \
+  --depth 3  # Overrides depth from config file
 ```
 
 ### Debug Mode

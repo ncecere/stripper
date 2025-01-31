@@ -140,8 +140,8 @@ func (c *Crawler) Start() error {
 
 // collectLinks uses colly to find all links on the site
 func (c *Crawler) collectLinks() error {
+	// Create collector without depth limit since we'll handle it ourselves
 	collector := colly.NewCollector(
-		colly.MaxDepth(c.depth),
 		colly.AllowedDomains(c.baseURL.Host),
 		colly.Async(true),
 	)
@@ -155,7 +155,7 @@ func (c *Crawler) collectLinks() error {
 
 	debugf("Starting link collection for %s with depth %d", c.baseURL.String(), c.depth)
 
-	// Queue the initial URL
+	// Queue the initial URL at depth 0
 	if err := c.db.QueueLink(c.baseURL.String(), 0); err != nil {
 		return fmt.Errorf("failed to queue initial URL: %w", err)
 	}
@@ -187,11 +187,22 @@ func (c *Crawler) collectLinks() error {
 			return
 		}
 
+		// Calculate depth based on the parent request
 		depth := e.Request.Depth + 1
-		if err := c.db.QueueLink(link, depth); err != nil {
-			debugf("Error queueing link %s: %v", link, err)
+
+		// Only queue links if we haven't reached max depth
+		if depth <= c.depth {
+			if err := c.db.QueueLink(link, depth); err != nil {
+				debugf("Error queueing link %s: %v", link, err)
+			} else {
+				debugf("Queued link: %s (depth: %d)", link, depth)
+				// Visit this URL to find more links, but only if we haven't reached max depth
+				if depth < c.depth {
+					e.Request.Visit(link)
+				}
+			}
 		} else {
-			debugf("Queued link: %s (depth: %d)", link, depth)
+			debugf("Skipping link due to depth limit: %s (depth: %d)", link, depth)
 		}
 	})
 
