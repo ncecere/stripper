@@ -22,6 +22,11 @@ type CrawlOptions struct {
 	RescanInterval string
 	ReaderAPIURL   string
 	Parallelism    int
+	AIEnabled      bool
+	AIEndpoint     string
+	AIKey          string
+	AIModel        string
+	AIPrompt       string
 }
 
 // findConfigFile looks for config in standard locations
@@ -68,6 +73,13 @@ The content will be retrieved using the Reader API and stored locally.`,
 	cmd.Flags().StringVarP(&opts.ConfigFile, "config", "c", "", "Path to config file")
 	cmd.Flags().IntVarP(&opts.Depth, "depth", "d", 1, "Maximum crawl depth")
 	cmd.Flags().IntVarP(&opts.Parallelism, "parallel", "p", 4, "Number of parallel workers")
+
+	// AI-related flags
+	cmd.Flags().BoolVar(&opts.AIEnabled, "ai", false, "Enable AI summarization")
+	cmd.Flags().StringVar(&opts.AIEndpoint, "ai-endpoint", "https://api.openai.com/v1", "AI API endpoint")
+	cmd.Flags().StringVar(&opts.AIKey, "ai-key", "", "AI API key")
+	cmd.Flags().StringVar(&opts.AIModel, "ai-model", "gpt-3.5-turbo", "AI model to use")
+	cmd.Flags().StringVar(&opts.AIPrompt, "ai-prompt", "", "System prompt for AI summarization")
 	cmd.Flags().StringVarP(&opts.Format, "format", "f", "markdown", "Output format (markdown, text, html)")
 	cmd.Flags().BoolVar(&opts.Force, "force", false, "Force re-crawl of already crawled URLs")
 	cmd.Flags().StringSliceVarP(&opts.Ignore, "ignore", "i", []string{
@@ -105,6 +117,13 @@ func runCrawl(opts *CrawlOptions) error {
 		"rescan":         opts.RescanInterval,
 		"reader-api-url": opts.ReaderAPIURL,
 		"parallelism":    opts.Parallelism,
+		"ai": map[string]interface{}{
+			"enabled":       opts.AIEnabled,
+			"endpoint":      opts.AIEndpoint,
+			"api_key":       opts.AIKey,
+			"model":         opts.AIModel,
+			"system_prompt": opts.AIPrompt,
+		},
 	}
 	config.MergeWithFlags(cfg, flags)
 
@@ -121,7 +140,7 @@ func runCrawl(opts *CrawlOptions) error {
 	}
 
 	// Initialize crawler
-	c, err := crawler.New(crawler.Options{
+	crawlerOpts := crawler.Options{
 		URL:            opts.URL,
 		Depth:          cfg.Crawler.Depth,
 		Format:         cfg.Crawler.Format,
@@ -131,7 +150,17 @@ func runCrawl(opts *CrawlOptions) error {
 		RescanInterval: rescanInterval,
 		ReaderAPIURL:   cfg.Crawler.ReaderAPI.URL,
 		Parallelism:    cfg.Crawler.Parallelism,
-	})
+	}
+
+	// Configure AI settings if enabled
+	crawlerOpts.AI.Enabled = cfg.Crawler.AI.Enabled
+	crawlerOpts.AI.Endpoint = cfg.Crawler.AI.Endpoint
+	crawlerOpts.AI.APIKey = cfg.Crawler.AI.APIKey
+	crawlerOpts.AI.Model = cfg.Crawler.AI.Model
+
+	crawlerOpts.AI.SystemPrompt = cfg.Crawler.AI.SystemPrompt
+
+	c, err := crawler.New(crawlerOpts)
 	if err != nil {
 		return fmt.Errorf("failed to initialize crawler: %w", err)
 	}

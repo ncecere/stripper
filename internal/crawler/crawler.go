@@ -5,11 +5,13 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"path"
 	"strings"
 	"sync"
 	"time"
 
+	"stripper/internal/ai"
 	"stripper/internal/database"
 	"stripper/internal/storage"
 	"stripper/internal/tui"
@@ -33,6 +35,9 @@ type Crawler struct {
 	rescanInterval time.Duration
 	readerAPIURL   string
 	parallelism    int
+	aiEnabled      bool
+	aiClient       *ai.Client
+	systemPrompt   string
 }
 
 // Options configures the crawler behavior
@@ -46,6 +51,13 @@ type Options struct {
 	RescanInterval time.Duration
 	ReaderAPIURL   string
 	Parallelism    int
+	AI             struct {
+		Enabled      bool
+		Endpoint     string
+		APIKey       string
+		Model        string
+		SystemPrompt string
+	}
 }
 
 // New creates a new Crawler instance
@@ -88,6 +100,20 @@ func New(opts Options) (*Crawler, error) {
 		rescanInterval: opts.RescanInterval,
 		readerAPIURL:   readerAPIURL,
 		parallelism:    opts.Parallelism,
+		aiEnabled:      opts.AI.Enabled,
+		systemPrompt:   opts.AI.SystemPrompt,
+	}
+
+	// Initialize AI client if enabled
+	if c.aiEnabled {
+		if opts.AI.APIKey == "" {
+			return nil, fmt.Errorf("AI API key is required when AI is enabled")
+		}
+		c.aiClient = ai.New(ai.Options{
+			Endpoint: opts.AI.Endpoint,
+			APIKey:   opts.AI.APIKey,
+			Model:    opts.AI.Model,
+		})
 	}
 
 	// Initialize TUI
@@ -238,9 +264,17 @@ func (c *Crawler) collectLinks() error {
 // processLinks processes queued links using the Reader API
 func (c *Crawler) processLinks() error {
 	const (
-		batchSize = 10
-		delay     = 500 * time.Millisecond
+		batchSize      = 5 // Reduced batch size
+		delay          = 1 * time.Second
+		maxRetries     = 5                // Increased retries
+		aiRateLimit    = 5 * time.Second  // Increased delay between AI requests
+		backoffInitial = 5 * time.Second  // Increased initial backoff
+		backoffMax     = 60 * time.Second // Increased max backoff
 	)
+
+	// Create a rate limiter for AI requests
+	aiLimiter := time.NewTicker(aiRateLimit)
+	defer aiLimiter.Stop()
 
 	for {
 		// Get next batch of links
@@ -297,11 +331,74 @@ func (c *Crawler) processLinks() error {
 					return
 				}
 
-				// Store content
+				// Generate AI summary first if enabled
+				var aiSummary string
+				if c.aiEnabled && c.aiClient != nil {
+					debugf("Attempting AI summary for %s", link.URL)
+
+					// Wait for rate limiter
+					<-aiLimiter.C
+
+					// Try with exponential backoff
+					backoff := backoffInitial
+					for retries := 0; retries < maxRetries; retries++ {
+						summary, err := c.aiClient.Summarize(content, c.systemPrompt)
+						if err != nil {
+							if strings.Contains(err.Error(), "429") {
+								debugf("Rate limited, waiting %v before retry %d for %s", backoff, retries+1, link.URL)
+								time.Sleep(backoff)
+								backoff *= 2
+								if backoff > backoffMax {
+									backoff = backoffMax
+								}
+								continue
+							}
+							debugf("Error generating AI summary for %s: %v", link.URL, err)
+							break
+						}
+						debugf("Successfully generated AI summary for %s (%d chars)", link.URL, len(summary))
+						aiSummary = summary
+						break
+					}
+				} else {
+					debugf("Skipping AI summary for %s (enabled: %v, client: %v)", link.URL, c.aiEnabled, c.aiClient != nil)
+				}
+
+				// If AI is enabled but we failed to get a summary, mark as failed
+				if c.aiEnabled && c.aiClient != nil && aiSummary == "" {
+					c.db.UpdateLinkStatus(link.URL, "failed", fmt.Errorf("failed to generate AI summary"))
+					return
+				}
+
+				// Store original content
 				if err := c.storage.Save(link.URL, content, c.format); err != nil {
 					c.db.UpdateLinkStatus(link.URL, "failed", err)
 					errChan <- err
 					return
+				}
+
+				// Store AI summary if generated
+				if aiSummary != "" {
+					// Create AI output directory
+					aiOutputDir := path.Join(c.outputDir, "ai")
+					if err := os.MkdirAll(aiOutputDir, 0755); err != nil {
+						debugf("Error creating AI output directory: %v", err)
+						return
+					}
+
+					// Create flat file name for AI output
+					fileName := strings.TrimPrefix(link.URL, c.baseURL.String())
+					fileName = strings.ReplaceAll(fileName, "/", "_")
+					if fileName == "" {
+						fileName = "index"
+					}
+					fileName = strings.TrimSuffix(fileName, "_") + ".md"
+
+					// Save directly to ai directory
+					debugf("Saving AI summary to: ai/%s (from URL: %s)", fileName, link.URL)
+					if err := os.WriteFile(path.Join(aiOutputDir, fileName), []byte(aiSummary), 0644); err != nil {
+						debugf("Error saving AI summary for %s: %v", link.URL, err)
+					}
 				}
 
 				c.db.UpdateLinkStatus(link.URL, "completed", nil)

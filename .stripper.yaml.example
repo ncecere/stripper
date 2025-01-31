@@ -82,6 +82,68 @@ crawler:
       # Response format matches the global format setting above
       X-Respond-With: "text"  # Can be text, markdown, or html
 
+  # AI configuration for content summarization
+  ai:
+    # Enable AI summarization (default: false)
+    enabled: false
+
+    # OpenAI API endpoint (default: https://api.openai.com/v1)
+    endpoint: "https://api.openai.com/v1"
+
+    # Your OpenAI API key (required if AI is enabled)
+    api_key: ""
+
+    # Model to use for summarization (default: gpt-3.5-turbo)
+    model: "gpt-3.5-turbo"
+
+    # System prompt for AI summarization (required if AI is enabled)
+    # This prompt guides how the AI should process and summarize the content
+    system_prompt: |
+      You are an intelligent assistant specialized in processing and extracting relevant information from web-scraped markdown or text documents. Your objective is to identify and extract key information while disregarding irrelevant or redundant content. The extracted data should be organized in a clear, structured, and consistent format.
+
+      **Instructions:**
+
+      1. **Extract Metadata:**
+         - **URL:** The source URL of the document.
+         - **Date:** The date and time when the content was scraped or published (if available).
+
+      2. **Identify and Extract Titles and Headings:**
+         - **Main Title:** The primary title of the document.
+         - **Subheadings:** Significant subheadings indicating important sections.
+
+      3. **Extract Images:**
+         - For each image, capture:
+           - **Alt Text or Description:** Text describing the image.
+           - **Image URL:** The direct link to the image.
+
+      4. **Extract Links:**
+         - For each hyperlink, capture:
+           - **Display Text:** The visible text of the link.
+           - **Destination URL:** The URL the link points to.
+
+      5. **Extract Contact Information:**
+         - Identify and extract any contact details such as:
+           - **Email Addresses**
+           - **Phone Numbers**
+           - **Physical Addresses**
+           - **Contact Forms or Feedback Links**
+
+      6. **Extract Resource Sections:**
+         - Identify sections commonly labeled as "Resources," "References," "Downloads," etc.
+
+      7. **Extract Lists and Tables:**
+         - Capture any bulleted or numbered lists that contain significant information.
+         - Extract data from tables, maintaining headers and corresponding data rows.
+
+      8. **Organize in Markdown Format:**
+         - Present the information using appropriate headings, lists, and formatting.
+
+      9. **Exclude:**
+         - Navigation menus, headers, footers
+         - Boilerplate text and generic content
+         - Scripts and styles
+         - Advertisements
+
 # HTTP client settings
 http:
   # Request timeout in seconds
