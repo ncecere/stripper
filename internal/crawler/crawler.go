@@ -32,6 +32,7 @@ type Crawler struct {
 	ui             *tea.Program
 	rescanInterval time.Duration
 	readerAPIURL   string
+	parallelism    int
 }
 
 // Options configures the crawler behavior
@@ -44,6 +45,7 @@ type Options struct {
 	OutputDir      string
 	RescanInterval time.Duration
 	ReaderAPIURL   string
+	Parallelism    int
 }
 
 // New creates a new Crawler instance
@@ -85,6 +87,7 @@ func New(opts Options) (*Crawler, error) {
 		db:             db,
 		rescanInterval: opts.RescanInterval,
 		readerAPIURL:   readerAPIURL,
+		parallelism:    opts.Parallelism,
 	}
 
 	// Initialize TUI
@@ -161,7 +164,7 @@ func (c *Crawler) collectLinks() error {
 	// Add rate limiting
 	collector.Limit(&colly.LimitRule{
 		DomainGlob:  "*",
-		Parallelism: 2,
+		Parallelism: c.parallelism,
 		Delay:       1 * time.Second,
 	})
 
@@ -252,46 +255,71 @@ func (c *Crawler) processLinks() error {
 
 		debugf("Starting batch processing with size %d", batchSize)
 
-		// Process each link
+		// Create a channel to limit concurrent goroutines
+		sem := make(chan bool, c.parallelism)
+		var wg sync.WaitGroup
+		errChan := make(chan error, len(links))
+
+		// Process links in parallel
 		for _, link := range links {
-			debugf("Processing link: %s (depth: %d)", link.URL, link.Depth)
+			wg.Add(1)
+			sem <- true // Acquire semaphore
+			go func(link database.Link) {
+				defer wg.Done()
+				defer func() { <-sem }() // Release semaphore
 
-			// Always collect links from pages we visit to find new content
-			if err := c.collectLinksFromURL(link.URL, link.Depth); err != nil {
-				debugf("Error collecting links from %s: %v", link.URL, err)
-			}
+				debugf("Processing link: %s (depth: %d)", link.URL, link.Depth)
 
-			// Check if we should recrawl content
-			shouldCrawl, err := c.db.ShouldRecrawl(link.URL, c.force, c.rescanInterval)
+				// Always collect links from pages we visit to find new content
+				if err := c.collectLinksFromURL(link.URL, link.Depth); err != nil {
+					debugf("Error collecting links from %s: %v", link.URL, err)
+				}
+
+				// Check if we should recrawl content
+				shouldCrawl, err := c.db.ShouldRecrawl(link.URL, c.force, c.rescanInterval)
+				if err != nil {
+					c.db.UpdateLinkStatus(link.URL, "failed", err)
+					return
+				}
+
+				if !shouldCrawl {
+					debugf("Skipping recent URL: %s (last crawled: %s)", link.URL, link.LastCrawled)
+					return
+				}
+
+				debugf("Fetching content for URL: %s", link.URL)
+
+				// Fetch content using Reader API
+				content, err := c.fetch(link.URL)
+				if err != nil {
+					c.db.UpdateLinkStatus(link.URL, "failed", err)
+					errChan <- err
+					return
+				}
+
+				// Store content
+				if err := c.storage.Save(link.URL, content, c.format); err != nil {
+					c.db.UpdateLinkStatus(link.URL, "failed", err)
+					errChan <- err
+					return
+				}
+
+				c.db.UpdateLinkStatus(link.URL, "completed", nil)
+
+				// Add delay between requests
+				time.Sleep(delay)
+			}(link)
+		}
+
+		// Wait for all goroutines to complete
+		wg.Wait()
+		close(errChan)
+
+		// Check for any errors
+		for err := range errChan {
 			if err != nil {
-				c.db.UpdateLinkStatus(link.URL, "failed", err)
-				continue
+				return fmt.Errorf("error processing links: %w", err)
 			}
-
-			if !shouldCrawl {
-				debugf("Skipping recent URL: %s (last crawled: %s)", link.URL, link.LastCrawled)
-				continue
-			}
-
-			debugf("Fetching content for URL: %s", link.URL)
-
-			// Fetch content using Reader API
-			content, err := c.fetch(link.URL)
-			if err != nil {
-				c.db.UpdateLinkStatus(link.URL, "failed", err)
-				continue
-			}
-
-			// Store content
-			if err := c.storage.Save(link.URL, content, c.format); err != nil {
-				c.db.UpdateLinkStatus(link.URL, "failed", err)
-				continue
-			}
-
-			c.db.UpdateLinkStatus(link.URL, "completed", nil)
-
-			// Add delay between requests
-			time.Sleep(delay)
 		}
 	}
 

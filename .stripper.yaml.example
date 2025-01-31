@@ -8,17 +8,24 @@ crawler:
   # - 2: Crawl initial URL and all direct links
   # - 3+: Continue following links to specified depth
   depth: 2
-  
+
+  # Number of parallel workers (default: 4)
+  # Controls how many pages can be processed simultaneously
+  # - Higher values increase speed but also server load
+  # - Lower values are gentler on the target server
+  # - Recommended range: 2-8 depending on server capacity
+  parallelism: 4
+
   # Output format: markdown, text, or html (default: markdown)
   # - markdown: Clean, formatted markdown content
   # - text: Plain text without formatting
   # - html: Original HTML content
   format: "markdown"
-  
+
   # Output directory for crawled content (default: output)
   # Content will be organized by domain and URL path
   output_dir: "output"
-  
+
   # File extensions to ignore during crawling
   # Add any extensions you want to skip
   ignore_extensions:
@@ -28,14 +35,14 @@ crawler:
     - docx
     - xls
     - xlsx
-    
+
     # Images
     - jpg
     - jpeg
     - png
     - gif
     - ico
-    
+
     # Web assets
     - css
     - js
@@ -43,13 +50,13 @@ crawler:
     - woff2
     - ttf
     - eot
-    
+
     # Media
     - mp4
     - webm
     - mp3
     - wav
-    
+
     # Archives
     - zip
     - tar
@@ -69,7 +76,7 @@ crawler:
     # Base URL for the Reader API (default: https://read.tabnot.space)
     # Change this if you're using a different Reader API endpoint
     url: "https://read.tabnot.space"
-    
+
     # Additional headers to send with requests
     headers:
       # Response format matches the global format setting above
@@ -79,15 +86,15 @@ crawler:
 http:
   # Request timeout in seconds
   timeout: 30
-  
+
   # Number of retry attempts for failed requests
   retry_attempts: 3
-  
+
   # Delay between retries in seconds
   retry_delay: 5
-  
+
   # User agent string for requests
   user_agent: "Stripper/1.0 Web Content Crawler"
-  
+
   # Delay between requests in milliseconds (to be nice to servers)
   request_delay: 1000

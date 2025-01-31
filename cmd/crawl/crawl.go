@@ -21,6 +21,7 @@ type CrawlOptions struct {
 	OutputDir      string
 	RescanInterval string
 	ReaderAPIURL   string
+	Parallelism    int
 }
 
 // findConfigFile looks for config in standard locations
@@ -54,7 +55,7 @@ func NewCrawlCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "crawl [url]",
 		Short: "Crawl and archive web content",
-		Long: `Crawl and archive web content from a specified URL. 
+		Long: `Crawl and archive web content from a specified URL.
 The content will be retrieved using the Reader API and stored locally.`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -66,6 +67,7 @@ The content will be retrieved using the Reader API and stored locally.`,
 	// Add flags
 	cmd.Flags().StringVarP(&opts.ConfigFile, "config", "c", "", "Path to config file")
 	cmd.Flags().IntVarP(&opts.Depth, "depth", "d", 1, "Maximum crawl depth")
+	cmd.Flags().IntVarP(&opts.Parallelism, "parallel", "p", 4, "Number of parallel workers")
 	cmd.Flags().StringVarP(&opts.Format, "format", "f", "markdown", "Output format (markdown, text, html)")
 	cmd.Flags().BoolVar(&opts.Force, "force", false, "Force re-crawl of already crawled URLs")
 	cmd.Flags().StringSliceVarP(&opts.Ignore, "ignore", "i", []string{
@@ -102,6 +104,7 @@ func runCrawl(opts *CrawlOptions) error {
 		"ignore":         opts.Ignore,
 		"rescan":         opts.RescanInterval,
 		"reader-api-url": opts.ReaderAPIURL,
+		"parallelism":    opts.Parallelism,
 	}
 	config.MergeWithFlags(cfg, flags)
 
@@ -127,6 +130,7 @@ func runCrawl(opts *CrawlOptions) error {
 		OutputDir:      outputDir,
 		RescanInterval: rescanInterval,
 		ReaderAPIURL:   cfg.Crawler.ReaderAPI.URL,
+		Parallelism:    cfg.Crawler.Parallelism,
 	})
 	if err != nil {
 		return fmt.Errorf("failed to initialize crawler: %w", err)
