@@ -1,6 +1,6 @@
 # Stripper
 
-This application will be a CLI tool that uses Cobra, Viper, and the charm libraies.
+This application will be a CLI tool that uses Cobra, Viper, and the Charm.
 
 ## Purpose
 The web scraper is designed to systematically crawl and archive web content from a specified domain. It leverages the Reader API to retrieve content in a structured format, making it ideal for archiving documentation, articles, and other textual resources.
@@ -12,6 +12,10 @@ The web scraper is designed to systematically crawl and archive web content from
 - Handles link extraction and content retrieval
 - Implements delays between requests to respect server load
 - Tracks progress and maintains statistics
+- recursive crawl a domain
+- ability to define a depth, meaning how many links past the starting url/domain to recursively follow
+- ability to define extensions/file types to ignore.
+- ability to define weather information should be extracted again or by using a "force" flag
 
 ### Error Handling
 - Implements robust retry logic with exponential backoff
@@ -20,7 +24,7 @@ The web scraper is designed to systematically crawl and archive web content from
 - Handles various error types differently (e.g., connection errors, timeouts, HTTP errors)
 
 ### Data Management
-- Stores retrieved content locally in markdown format
+- Stores retrieved content locally in markdown, text, or html format
 - Maintains a database for tracking URLs and their status
 - Associates content with metadata for easy retrieval
 - Provides comprehensive statistics and reporting
@@ -35,10 +39,11 @@ The web scraper is designed to systematically crawl and archive web content from
 
 ### Crawling Strategy
 1. **Initialization**: Configures initial settings and connects to necessary components.
-2. **Content Retrieval**: Uses the Jina Reader API to fetch content from specified URLs.
+2. **Content Retrieval**: Uses the Reader API to fetch content from specified URLs.
 3. **Link Extraction**: Parses HTML to find and normalize new URLs for crawling.
 4. **Content Storage**: Saves content locally and updates the database.
 5. **Progress Tracking**: Maintains statistics and provides regular progress updates.
+6. **Extraction Date**: Maintain information on when the content was last scraped
 
 ### Error Handling Strategy
 - **Retry Mechanism**: Implements exponential backoff for failed requests.
@@ -174,3 +179,7 @@ UF Public Records
 ```
 
 X-Respond-With options are text, markdown, and html
+
+Run the curl command so you can under stand how the API works.
+
+The TUI ui should be simple and easy to read.
