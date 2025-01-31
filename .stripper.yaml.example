@@ -1,0 +1,57 @@
+# Stripper Configuration File
+# Copy this file to .stripper.yaml and modify as needed
+
+# Crawler settings
+crawler:
+  # Maximum depth to crawl (default: 1)
+  depth: 2
+  
+  # Output format: markdown, text, or html (default: markdown)
+  format: "markdown"
+  
+  # Output directory for crawled content (default: output)
+  output_dir: "output"
+  
+  # File extensions to ignore during crawling
+  ignore_extensions:
+    - pdf
+    - jpg
+    - png
+    - gif
+    - zip
+    - exe
+    - doc
+    - docx
+    - xls
+    - xlsx
+    - css
+    - js
+    - ico
+    - woff
+    - woff2
+    - ttf
+    - eot
+    - mp4
+    - webm
+    - mp3
+    - wav
+    - tar
+    - gz
+    - rar
+
+# HTTP client settings
+http:
+  # Request timeout in seconds
+  timeout: 30
+  
+  # Number of retry attempts for failed requests
+  retry_attempts: 3
+  
+  # Delay between retries in seconds
+  retry_delay: 5
+  
+  # User agent string for requests
+  user_agent: "Stripper/1.0 Web Content Crawler"
+  
+  # Delay between requests in milliseconds (to be nice to servers)
+  request_delay: 1000
