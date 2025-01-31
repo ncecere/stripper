@@ -20,26 +20,28 @@ import (
 
 // Crawler handles the web crawling functionality
 type Crawler struct {
-	client    *http.Client
-	baseURL   *url.URL
-	depth     int
-	format    string
-	force     bool
-	ignore    []string
-	outputDir string
-	storage   storage.Storage
-	db        *database.DB
-	ui        *tea.Program
+	client         *http.Client
+	baseURL        *url.URL
+	depth          int
+	format         string
+	force          bool
+	ignore         []string
+	outputDir      string
+	storage        storage.Storage
+	db             *database.DB
+	ui             *tea.Program
+	rescanInterval time.Duration
 }
 
 // Options configures the crawler behavior
 type Options struct {
-	URL       string
-	Depth     int
-	Format    string
-	Force     bool
-	Ignore    []string
-	OutputDir string
+	URL            string
+	Depth          int
+	Format         string
+	Force          bool
+	Ignore         []string
+	OutputDir      string
+	RescanInterval time.Duration
 }
 
 // New creates a new Crawler instance
@@ -64,15 +66,16 @@ func New(opts Options) (*Crawler, error) {
 
 	// Create crawler instance
 	c := &Crawler{
-		client:    &http.Client{},
-		baseURL:   baseURL,
-		depth:     opts.Depth,
-		format:    opts.Format,
-		force:     opts.Force,
-		ignore:    opts.Ignore,
-		outputDir: opts.OutputDir,
-		storage:   store,
-		db:        db,
+		client:         &http.Client{},
+		baseURL:        baseURL,
+		depth:          opts.Depth,
+		format:         opts.Format,
+		force:          opts.Force,
+		ignore:         opts.Ignore,
+		outputDir:      opts.OutputDir,
+		storage:        store,
+		db:             db,
+		rescanInterval: opts.RescanInterval,
 	}
 
 	// Initialize TUI
@@ -244,8 +247,13 @@ func (c *Crawler) processLinks() error {
 		for _, link := range links {
 			debugf("Processing link: %s (depth: %d)", link.URL, link.Depth)
 
-			// Check if we should recrawl
-			shouldCrawl, err := c.db.ShouldRecrawl(link.URL, c.force, 24*time.Hour)
+			// Always collect links from pages we visit to find new content
+			if err := c.collectLinksFromURL(link.URL, link.Depth); err != nil {
+				debugf("Error collecting links from %s: %v", link.URL, err)
+			}
+
+			// Check if we should recrawl content
+			shouldCrawl, err := c.db.ShouldRecrawl(link.URL, c.force, c.rescanInterval)
 			if err != nil {
 				c.db.UpdateLinkStatus(link.URL, "failed", err)
 				continue
@@ -279,6 +287,40 @@ func (c *Crawler) processLinks() error {
 	}
 
 	return nil
+}
+
+// collectLinksFromURL collects links from a specific URL
+func (c *Crawler) collectLinksFromURL(targetURL string, currentDepth int) error {
+	collector := colly.NewCollector(
+		colly.AllowedDomains(c.baseURL.Host),
+	)
+
+	collector.OnHTML("a[href]", func(e *colly.HTMLElement) {
+		link := e.Request.AbsoluteURL(e.Attr("href"))
+		if link == "" {
+			return
+		}
+
+		parsedLink, err := url.Parse(link)
+		if err != nil || parsedLink.Host != c.baseURL.Host {
+			return
+		}
+
+		if shouldIgnoreURL(link, c.ignore) {
+			return
+		}
+
+		depth := currentDepth + 1
+		if depth <= c.depth {
+			if err := c.db.QueueLink(link, depth); err != nil {
+				debugf("Error queueing new link %s: %v", link, err)
+			} else {
+				debugf("Queued new link: %s (depth: %d)", link, depth)
+			}
+		}
+	})
+
+	return collector.Visit(targetURL)
 }
 
 // fetch retrieves content from a URL using the Reader API

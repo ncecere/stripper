@@ -24,6 +24,10 @@ crawler:
     - xls
     - xlsx
 
+  # Rescan interval for previously crawled pages (e.g., 24h, 1h30m, 15m)
+  # Pages older than this will be recrawled to check for changes
+  rescan_interval: "24h"
+
 # HTTP client settings
 http:
   # Request timeout in seconds

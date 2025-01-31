@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"time"
 
 	"stripper/internal/crawler"
 
@@ -11,12 +12,13 @@ import (
 )
 
 type CrawlOptions struct {
-	URL       string
-	Depth     int
-	Format    string
-	Force     bool
-	Ignore    []string
-	OutputDir string
+	URL            string
+	Depth          int
+	Format         string
+	Force          bool
+	Ignore         []string
+	OutputDir      string
+	RescanInterval string
 }
 
 func NewCrawlCmd() *cobra.Command {
@@ -44,6 +46,7 @@ The content will be retrieved using the Reader API and stored locally.`,
 		"zip", "tar", "gz", "rar",
 	}, "File extensions to ignore")
 	cmd.Flags().StringVarP(&opts.OutputDir, "output", "o", "output", "Output directory for crawled content")
+	cmd.Flags().StringVarP(&opts.RescanInterval, "rescan", "r", "24h", "Rescan interval for previously crawled pages (e.g., 24h, 1h30m, 15m)")
 
 	return cmd
 }
@@ -55,14 +58,21 @@ func runCrawl(opts *CrawlOptions) error {
 		return fmt.Errorf("failed to create output directory: %w", err)
 	}
 
+	// Parse rescan interval
+	rescanInterval, err := time.ParseDuration(opts.RescanInterval)
+	if err != nil {
+		return fmt.Errorf("invalid rescan interval format (use format like 24h, 1h30m, 15m): %w", err)
+	}
+
 	// Initialize crawler
 	c, err := crawler.New(crawler.Options{
-		URL:       opts.URL,
-		Depth:     opts.Depth,
-		Format:    opts.Format,
-		Force:     opts.Force,
-		Ignore:    opts.Ignore,
-		OutputDir: outputDir,
+		URL:            opts.URL,
+		Depth:          opts.Depth,
+		Format:         opts.Format,
+		Force:          opts.Force,
+		Ignore:         opts.Ignore,
+		OutputDir:      outputDir,
+		RescanInterval: rescanInterval,
 	})
 	if err != nil {
 		return fmt.Errorf("failed to initialize crawler: %w", err)
