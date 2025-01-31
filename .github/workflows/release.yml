@@ -34,6 +34,9 @@ jobs:
             gcc-aarch64-linux-gnu \
             g++-aarch64-linux-gnu
 
+          # Ensure basic tools are in PATH
+          echo "/usr/bin" >> $GITHUB_PATH
+
       - name: Install osxcross
         run: |
           # Dependencies for osxcross
@@ -78,4 +81,4 @@ jobs:
           # Force CGO on for the entire run; individual builds also set CGO_ENABLED=1
           CGO_ENABLED: 1
           # Prepend osxcross binaries to PATH so that o64-clang, oa64-clang, etc. are found
-          PATH: /usr/lib/ccache:/usr/local/opt/ccache/libexec:${{ github.workspace }}/osxcross/target/bin:${{ env.PATH }}
+          PATH: /usr/bin:/usr/lib/ccache:/usr/local/opt/ccache/libexec:${{ github.workspace }}/osxcross/target/bin:${{ env.PATH }}
