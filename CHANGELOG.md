@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed cross-compilation setup in GitHub Actions workflow
 - Updated dependency installation for multi-architecture builds
+- Added separate builds for CGO-enabled and CGO-disabled binaries
+- Improved ARM64 support with SQLite-free builds
+
+### Added
+- SQLite-free builds for better platform compatibility
+- Build tags for conditional SQLite support
 
 ## [v0.1.1] - 2025-01-31
 
