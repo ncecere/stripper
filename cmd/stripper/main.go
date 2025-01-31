@@ -7,8 +7,6 @@ import (
 	"path/filepath"
 	"time"
 
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
@@ -26,80 +24,7 @@ var (
 	format       string
 	maxDepth     int
 	stayInDomain bool
-	styleTitle   = lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("205"))
-	styleError   = lipgloss.NewStyle().Foreground(lipgloss.Color("196"))
-	styleInfo    = lipgloss.NewStyle().Foreground(lipgloss.Color("86"))
-	stylePrompt  = lipgloss.NewStyle().Foreground(lipgloss.Color("99"))
 )
-
-type frameMsg struct{}
-
-type model struct {
-	url      string
-	stats    crawler.Stats
-	err      error
-	quitting bool
-	done     bool
-	lastLine string
-}
-
-func (m model) Init() tea.Cmd {
-	return tickCmd()
-}
-
-func tickCmd() tea.Cmd {
-	return tea.Tick(time.Second/2, func(t time.Time) tea.Msg {
-		return frameMsg{}
-	})
-}
-
-func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	switch msg := msg.(type) {
-	case frameMsg:
-		return m, tickCmd()
-	case tea.KeyMsg:
-		if msg.Type == tea.KeyCtrlC {
-			m.quitting = true
-			return m, tea.Quit
-		}
-	case crawler.Stats:
-		m.stats = msg
-		if m.stats.TotalURLs > 0 && m.stats.URLsProcessed >= m.stats.TotalURLs {
-			m.done = true
-			return m, tea.Quit
-		}
-	case error:
-		m.err = msg
-		return m, tea.Quit
-	case bool: // completion signal
-		m.done = msg
-		return m, tea.Quit
-	}
-	return m, nil
-}
-
-func (m model) View() string {
-	if m.err != nil {
-		return fmt.Sprintf("\r%s\n", styleError.Render(fmt.Sprintf("Error: %v", m.err)))
-	}
-
-	var percentage float64
-	if m.stats.TotalURLs > 0 {
-		percentage = float64(m.stats.URLsProcessed) / float64(m.stats.TotalURLs) * 100
-	}
-
-	m.lastLine = fmt.Sprintf("Processed: %d/%d URLs (%.1f%%)",
-		m.stats.URLsProcessed,
-		m.stats.TotalURLs,
-		percentage,
-	)
-
-	if m.done {
-		return fmt.Sprintf("\r%s\n", m.lastLine)
-	}
-
-	return fmt.Sprintf("\r%s", m.lastLine)
-}
 
 var rootCmd = &cobra.Command{
 	Use:   "stripper",
@@ -131,17 +56,16 @@ var crawlCmd = &cobra.Command{
 		// Initialize crawler
 		c := crawler.NewCrawler(readerClient, store)
 
-		// Create and configure the TUI model
-		m := model{
-			url: url,
-		}
-
-		fmt.Printf("Content will be saved to: %s\n\n", outputDir)
-		fmt.Printf("Crawling: %s\n\n", url)
+		// Print initial message
+		fmt.Fprintf(os.Stderr, "Content will be saved to: %s\n\n", outputDir)
 
 		// Create a channel for stats updates
 		statsChan := make(chan crawler.Stats, 100)
 		defer close(statsChan)
+
+		// Create a channel for completion
+		doneChan := make(chan bool)
+		defer close(doneChan)
 
 		// Set up progress callback
 		c.SetProgressCallback(func(stats crawler.Stats) {
@@ -152,27 +76,12 @@ var crawlCmd = &cobra.Command{
 			}
 		})
 
-		// Create program without alternate screen
-		p := tea.NewProgram(
-			&m,
-			tea.WithOutput(os.Stdout),
-		)
-
-		// Start a goroutine to forward stats to the program
-		go func() {
-			for stats := range statsChan {
-				p.Send(stats)
-			}
-		}()
-
 		// Create a context with cancellation
 		ctx, cancel := context.WithCancel(context.Background())
 		defer cancel()
 
 		// Start crawling in a goroutine
 		errCh := make(chan error, 1)
-		doneCh := make(chan struct{})
-
 		go func() {
 			config := crawler.Config{
 				BatchSize:    batchSize,
@@ -186,36 +95,35 @@ var crawlCmd = &cobra.Command{
 			}
 			err := c.Start(ctx, config)
 			errCh <- err
-			close(doneCh)
+			doneChan <- true
 		}()
 
-		// Start another goroutine to signal completion
-		go func() {
-			<-doneCh
-			p.Send(true) // Send completion signal
-		}()
+		// Print progress updates
+		for {
+			select {
+			case stats := <-statsChan:
+				var percentage float64
+				if stats.TotalURLs > 0 {
+					percentage = float64(stats.URLsProcessed) / float64(stats.TotalURLs) * 100
+				}
 
-		// Run the TUI
-		finalModel, err := p.Run()
-		if err != nil {
-			cancel() // Cancel context on UI error
-			return fmt.Errorf("failed to run UI: %w", err)
+				// Print the progress with padding for clean overwrites
+				fmt.Fprintf(os.Stderr, "\r%d/%d URLs (%.1f%%)      ",
+					stats.URLsProcessed,
+					stats.TotalURLs,
+					percentage,
+				)
+
+			case <-doneChan:
+				fmt.Fprintf(os.Stderr, "\n")
+				return nil
+
+			case err := <-errCh:
+				if err != nil {
+					return fmt.Errorf("crawler error: %w", err)
+				}
+			}
 		}
-
-		// Check for crawler errors
-		if err := <-errCh; err != nil {
-			return fmt.Errorf("crawler error: %w", err)
-		}
-
-		// Print final stats
-		if m, ok := finalModel.(model); ok && !m.quitting {
-			fmt.Printf("%s\n", styleInfo.Render("Crawling complete!"))
-		}
-
-		// Ensure proper cleanup
-		c.Stop()
-
-		return nil
 	},
 }
 
