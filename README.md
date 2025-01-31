@@ -201,6 +201,10 @@ make test
 
 MIT License
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history and version details.
+
 ## Author
 
 Nick Cecere (@ncecere)
