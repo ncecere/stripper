@@ -1,0 +1,116 @@
+Skip to main content
+UF Information Technology
+School Logo Link
+MENU
+
+IT SERVICES
+
+Student Resources
+
+
+
+To help you navigate the myriad of information, below are helpful resources for getting started, while you are on campus, and after you arrive.
+
+Menu
+Before You Arrive
+
+GatorLink Account
+GatorLink (GL) Account is an individual's computer network identity at the University of Florida. It is required for access to most UF resources. To create an account you need a personal email address and one valid phone number in the UF Registry. You should receive an ‘invitation’ email to create an account. If you have not received an invitation, go to Resend GatorLink Invitation or visit Account Creation to create your GatorLink username and password. If you need to reset your password, visit account.it.ufl.edu.
+
+Two-Factor Authentication
+Two-Factor Authentication or 2FA is a verification process to ensure you are the only one using your account, avoiding unauthorized users from logging in. This helps protect and secure your account as well as UF resources. 2FA uses your username and password, and something you have, such your smartphone, during the authentication request. Use My Two-Factor self-service to enroll.
+
+ID Card
+ID Card or Gator 1 Card is your official university identification card. It is required to access UF facilities, computer labs, Rec Sports, meal plans among many others. Visit Gator 1 card portal to apply. For more details visit Gator 1 Card Procedures.
+
+GatorMail
+ As a student you are eligible for a UF email. It is your GatorLink username followed by @ufl.edu. Your mailbox is created automatically and can be accessed at mail.ufl.edu. This is a primary channel of communication with your instructors and school administrators.
+
+ONE.UF
+ONE.UF is the one-stop, self-service portal for managing your student life. Here you can view your degree audit, register for classes, check campus finances, pay tuition, request transcripts, and more. During the pandemic you can also schedule bi-weekly COVID tests. Visit one.ufl.edu and click the blue “Login with GatorLink” box under “Students, Faculty, & Staff.”
+
+Security
+As you use your account to navigate UF resources keep in mind best practices to protect yourself as well as the UF community. Visit Security Resources for students to learn more.
+
+Virtual Private Network
+ The UF Virtual Private Network or VPN provides students with secure, remote access to the university’s network. This means you can access resources on the UF network from anywhere at any time, including departmental drives and network files, the UF Libraries database, and remote desktop. The UF VPN is not required for services like Canvas e-Learning, ONE.UF, GatorMail, and UFApps.To connect you will need to install the UF Cisco VPN Client. For instructions visit the installation guide at Cisco Secure VPN Installation & Configuration Guide.
+
+While on Campus / After You Arrive
+
+Canvas
+Canvas or e-Learning is UF’s e-Learning system that supports all online teaching and learning at UF. Canvas houses everything from course videos, syllabi, grades, discussion posts, assignments, quizzes, and exams. To access your courses, go to elearning.ufl.edu. Click on “Log In To E-Learning” and enter your GatorLink credentials. Visit Keep Learning for a Canvas Quick Start Guide, Student FAQs, and Resources for remote learning. UFIT also provides a few “how to” videos to help you make the most of Canvas e-Learning.
+
+Computer Labs
+Academic Technology provides six computer labs across campus. For the location nearest you and hours of operation visit Computer Labs. A list of available software at these locations can be found at .
+
+Discounted Software Options
+Before purchasing a full-price software license for class, students should check out the list of discounted software available through UF. Popular apps include Amos, SAS, SPSS, Adobe Creative Cloud, and more. Students can also download up to five free copies of Microsoft Office 365 ProPlus via UF’s GatorCloud, which includes Word, Excel, PowerPoint, Outlook, OneDrive, and Teams. Contact the UF Computing Help Desk with any questions about discounted software (352-392-HELP/4357, helpdesk@ufl.edu, 132 Hub).
+
+Office 365
+The University provides Office 365 ProPlus free of charge for students. You can download up to five copies of Office 2013 Professional Plus, Office 2016 for Mac, and Office for iPad to your personal devices. To download visit GatorCloud - Microsoft Office Online. To access the service in the cloud go to Office 365.
+
+Software Licensing
+As a student you are eligible for a discounted software licensing. To find out available centrally-managed software and its pricing visit Software Listings.
+
+G Suite
+UF G Suite provides cloud storage through Google drive. Available tools include Drive, Docs, Sheets, Slides, Forms, Calendar, Sites, Jamboard, Google Meet, and Google Chat. If you access G suite apps for the very first time, check out Using Your Google Account.
+
+GatorCloud
+GatorCloud is home to all of UF’s cloud-based collaboration and storage options – G-Suite, Office 365, GatorMail, and OneDrive. Using a UF account instead of a personal account for these cloud services provides an extra layer of security. Visit cloud.it.ufl.edu to see a checklist of what’s available to you based on your affiliation.
+
+Mobile Printing
+With over 50 mobile printing locations across campus, you can print on the go as you walk, bus, or scoot your way to class. Locations include UF Libraries, the Hub, Newell Hall, Norman Hall, Weil Hall, CSE, Weimer Hall, and the School of Architecture. A full list of locations and what type of printers are available are on Printing Locations Guide. To print, visit mobileprint.at.ufl.edu or email the print job to mobileprint@at.ufl.edu.
+
+Zoom
+Zoom is a video conference service which can be used for online meetings, connecting with other students, or collaborating on your projects. To start UF Zoom go to Zoom Sign In.
+
+LinkedIn Learning
+LinkedIn Learning is a free online learning platform with over 16,000 skill-building courses in seven languages ranging from software and tools such as Office 365, programming foundations to career development such as job search strategies, writing a resume and job interview tips. You can earn badges and certificates to add to your LinkedIn profiles after completing a course.To start learning visit UF LinkedIn Learning.
+
+UFApps
+UFApps is a collection of over 180 free software applications available to students and faculty with active GatorLink credentials. There’s no need to purchase expensive software or visit a computer lab with UFApps. Students can access applications at any time, from any computing device, anywhere with an Internet connection. Popular apps include MATLAB, Minitab, ArcGIS, SPSS, and Tableau. A complete list of available applications can be found at Published Applications. Students can take advantage of UFApps to complete assignments or for professional development. To access UFApps, visit info.apps.ufl.edu. Click the orange “Login to UFApps” box in the upper right corner and enter your GatorLink credentials.
+
+Wi-Fi 
+Eduroam is the university’s secure, high-speed wireless network. Anyone with active GatorLink credentials can access Eduroam even while they’re far away from campus. Eduroam is available nationally and internationally with over 10,000 hotspots in 106 countries and territories. To connect to Eduroam Off-Campus visit the UF Computing Help Desk website. If you need help connecting to Eduroam, please call 352-392-HELP/4357, email helpdesk@ufl.edu, or visit 132 Hub.
+
+Disability Resource Center
+If you require accommodations, reach out to the Disability Resource Center (DRC). You can find resources to get started at Student Resources.
+
+University of Florida Information Technology
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Contact
+
+University of Florida
+Gainesville, FL 32611
+
+ 
+
+Website Feedback
+
+ 
+
+helpdesk@ufl.edu
+
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

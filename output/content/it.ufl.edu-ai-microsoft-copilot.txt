@@ -1,0 +1,55 @@
+Skip to main content
+UFIT Artificial Intelligence
+School Logo Link
+MENU
+UF GPT: MICROSOFT COPILOT
+
+This service currently provided by Microsoft Copilot (not M365 Copilot) is protected by UF-Microsoft data agreement. Copilot is an AI assistant that uses OpenAI's GPT-4 model. It generates human-like responses and functions as a web search engine with access to web search results and up-to-date information. To start using it, click the link below and log in with your GatorLink. Available to UF Students, Faculty, and Staff.
+
+ 
+
+Launch Microsoft Copilot
+
+ 
+
+ 
+
+Security, Privacy, Data Classification Usage Guidelines
+
+When used with your GatorLink login Microsoft provides additional protection of your data above and beyond the basic publicly available Microsoft Copilot service. At this time, UF does not permit the usage of restricted or sensitive data with UF GPT powered by Microsoft Copilot, please see the UF Data Guide for more information. Conversation history is not retained post each session, and user interactions do not contribute to training the large language model. Further work is underway to assess the service for use with additional data classifications. Check back here for further updates.
+
+ 
+
+ 
+
+Using Microsoft Copilot
+
+AI-powered tool designed to assist users in a variety of tasks. Whether you are in pursuit of specific information, require assistance with a particular task, or simply wish to engage in a conversation, Microsoft Copilot is available through your browsers and your phone.
+
+Microsoft Copilot uses a version of the Generative Pretrained Transformer model, specifically GPT-4. This model is more complex and capable of handling different kinds of inputs, including images, compared to its predecessor, GPT-3.5.
+
+Department Logo
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

@@ -1,0 +1,87 @@
+Skip to main content
+Information Technology
+ABOUT
+SERVICES
+RESOURCES
+IT POLICIES
+COMMUNITY
+NEWS
+ 
+CALENDAR
+ 
+DIRECTORY
+ 
+HELP DESK
+ 
+UFIT BC
+ 
+TEXT-ONLY
+Search UF
+Submit
+ICT
+DOCUMENTATION
+NETWORK INFRASTRUCTURE
+VPN
+VPN
+CISCO SECURE VPN INSTALLATION & CONFIG GUIDE
+CISCO SECURE VPN OPERATIONS GUIDE
+L2TP/IPSEC CONFIGURATION & OPERATIONS GUIDE
+FAQ
+UF GATORLINK VPN SERVICE
+
+The Gatorlink VPN service provides secure remote access to the University of Florida network and makes it appear as if your computer were physically attached to the campus network. By using the Gatorlink VPN client, you may access resources on the UF network that are not typically available over an Internet path. These may include:
+
+Windows file shares.
+Private IP addressed systems (10.x.x.x, 172.16.x.x).
+UF Library Journals.
+Software licensing services
+
+The Gatorlink VPN service is based primarily on th Cisco Secure VPN client. This client supports a wide range of operating systems including Windows ,Mac, Linux, Apple IOS and Android. It is based on SSL transport rather than IPsec which was supported by the older client. Cisco Secure VPN will also work on networks which use heavy firewalling and/or network address translation. Features include auto-update and auto-policy synchronization which eliminate the need to update the client manually.
+
+Once you install the client, you will automatically be updated when a new client is available. The client is SSL based and supports the full gatorlink VPN tunnel feature set including campus-only tunnels as well as departmental VPNs. It is not a Java based client, and does not require Java. In addition to the Cisco Secure VPN client, the UF Gatorlink VPN service also supports legacy L2TP over IPsec clients which are built into many popular operating systems.
+
+The Gatorlink VPN service is provided by Network Services and the UF Helpdesk.
+
+CLIENT DOWNLOAD
+
+The latest Cisco Secure VPN client may be downloaded from the Cisco Secure VPN Download Site. The client will require a minor amount of configuration the first time you install it. See the configuration guides for more information. Clients for Apple IOS and Android are available through their respective App Stores.
+
+​GUIDES/DOCUMENTATION
+ 
+Cisco Secure VPN Installation/Configuration Guide​
+Cisco Secure VPN Operations Guide
+APPLY
+VISIT
+JOBS
+ASK UF
+University of Florida
+Facebook
+ 
+Twitter
+ 
+Instagram
+ 
+YouTube
+
+University of Florida
+Gainesville, FL 32611
+UF Operator: (352) 392-3261
+Website text-only version
+
+RESOURCES
+ONE.UF
+WEBMAIL
+MYUFL
+E-LEARNING
+DIRECTORY
+CAMPUS
+WEATHER
+CAMPUS MAP
+STUDENT TOURS
+ACADEMIC CALENDAR
+EVENTS
+WEBSITE
+WEBSITE LISTING
+ACCESSIBILITY
+PRIVACY POLICY
+REGULATIONS

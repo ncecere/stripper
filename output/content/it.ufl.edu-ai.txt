@@ -1,0 +1,95 @@
+Skip to main content
+UFIT Artificial Intelligence
+School Logo Link
+MENU
+
+UF INFORMATION TECHNOLOGY
+
+AI Services
+
+
+NaviGator AI
+UF GPT: Microsoft Copilot
+Applications of AI
+Digital Twins
+AI Across the Curriculum
+AI Guidance
+Additional AI Resources
+NaviGator AI
+
+NaviGator Chat
+
+NaviGator Chat allows you to use different Large Language Models (LLMs) with your own dataset. You can use AI to discover trends and patterns, look for insights, and produce reports based on your data. Available to UF Students, Faculty, and Staff.
+
+NaviGator Chat
+NaviGator Assistant
+
+NaviGator Assistant allows UF departments to configure AI assistants with information from databases, files and websites. NaviGator Assistant can be integrated into websites and applications to answer context specific questions from users. Available to UF Departments.
+
+NaviGator Assistant
+NaviGator Toolkit
+
+NaviGator Toolkit allows users to integrate their custom and SaaS applications to leverage AI models such as GPT, Llama, Gemini, Claude and others. Consultation with UFIT experts in high performance computing and artificial intelligence is available for this service. Available to UF Students, Faculty, and Staff.
+
+NaviGator Toolkit
+UF GPT: Microsoft Copilot
+
+Copilot is an AI assistant that uses OpenAI's GPT-4 model. It generates human-like responses and functions as a web search engine with access to web search results and up-to-date information. Available to UF Students, Faculty, and Staff.
+
+Microsoft Copilot
+Applications of AI
+
+AI is an emerging and powerful technology that enables disciplines to address challenges that were previously intractable. UF is equipping its researchers and faculty with the most advanced and cutting-edge technology to broaden and deepen research in the applications of AI. 
+
+Research Computing
+Discover how UF provides AI infrastructure and services, including the largest AI computer in U.S. higher education, and how to access, collaborate and fund AI projects.
+HiPerGator
+The University of Florida supercomputer is a cluster that includes the latest generation of processors and offers nodes for memory-intensive computation. HiPerGator’s high-performance storage systems can be accessed from diverse interfaces, including Globus, UFApps for Research, and other tools.
+Digital Twins
+
+UF Cognitive Digital Twins – More coming soon! Cognitive digital twins are digital models of real-world entities that can learn from data and make predictions. They use artificial intelligence and cognitive capabilities to understand, reason, and act. They can help optimize processes, improve outcomes, and foresee the future.
+
+AI Across the Curriculum
+
+The University of Florida is infusing AI across the curriculum and developing opportunities for student engagement within identified areas of AI literacy regardless of student discipline. The AI Across the Curriculum initiative being developed at UF will make AI education a cornerstone opportunity for all students. 
+
+Teaching and Learning Tools
+Explore how UF uses AI to enhance teaching and learning, including AI applications for assessment, adaptive learning, and text generation tools.
+UFIT Tech Bytes
+UFIT Tech Bytes is a series that provides bite-sized events covering technologies and strategies (including AI) to enhance teaching and learning.
+AI Guidance
+
+We are poised at the threshold of a revolution in higher education, where the boundaries of learning are being redefined by the power of Artificial Intelligence (AI). Embracing the opportunities presented by AI, we encourage educators and students alike to venture forth into uncharted territories, exploring the vast potential of AI to enhance teaching, learning, and discovery.
+
+AI Technologies in Education
+By fostering AI literacy, critical thinking, and innovation, the university aims to prepare students for an AI-driven world, while upholding ethical standards. Click to view the full guidance document.
+Additional AI Resources
+UF’s AI Initiatives
+Learn how UF is advancing AI in education and research, with opportunities for students and professionals to explore AI courses, certificates, majors and programs.
+AI2 Center
+The Artificial Intelligence Academic Initiative Center, known as AI2 (AI squared), is the UF focal point for academic initiatives related to AI and data science. The center coordinates the development of AI academic programs and certificates, identifies opportunities for faculty and students to engage with AI.
+Department Logo
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

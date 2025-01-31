@@ -1,0 +1,116 @@
+Skip to main content
+UF Information Technology
+School Logo Link
+MENU
+Home
+Get Connected
+Remote Work Resources
+REMOTE WORK RESOURCES
+
+There might be times when you need to work remotely off campus.  Listed below are some helpful tools and tips to ensure a seamless work experience between performing job duties on and off campus.
+
+Meet Virtually With Video, Voice, Chat, And Screenshare
+Check UF email through a Web browser
+UF’s main portal for cloud-based resources
+Connect Remotely To Your Files, Computer or Other Resources On The UF Network
+Continued productivity with virtualized applications
+Download the Microsoft Office suite to your personal computer
+Remote Desktop Setup
+Office Phone Resources
+
+ 
+
+Meet virtually with video, voice, chat, and screenshare
+
+Web based video conferencing and online chat platforms are available for you to connect with faculty, students, staff, and other colleagues. You will need a webcam with built-in microphone (or a headset with microphone) to take full advantage of the video and voice features. Chat and screenshare can be done without the use of a webcam and microphone.  All three products in this category can be used on a Windows based PC, Macintosh, and smartphones (via a mobile app). More detailed information can be found on each product’s service page. Some use cases for these products include holding an online group meeting, a one-on-one meeting, online classes, webinars, and lectures, office hours, study groups, file and app sharing, and screensharing.
+
+Zoom – video conferencing service available to all UF students, faculty, and staff that allows for meetings of up to 300 participants. Zoom is also available in Canvas for instructors to use in their courses.  Use Zoom for video conferencing, voice, chat, and screenshare features. 
+
+Security and Best Practice for Staff using Zoom.
+
+Microsoft Teams – provides a real-time “workspace” for collaboration and communication. Use Microsoft Teams for video conferencing, voice, chat, share files and applications, and store documents features.
+
+Google Hangouts Meet - collaborate via video, phone, or instant message, and share desktops.  Use Google Hangouts Meet for video conferencing, voice, chat, share files, and screenshare features.
+
+ 
+
+Check UF email through a web bowser
+
+Web based email functionality is available for checking your UF work email mailbox.  You can use any Web browser and the only additional requirement is being connected to the Internet.  A Windows based PC, Macintosh, and smartphones via a Web browser can all be used to check email.
+
+GatorMail – to check UF email via a web browser
+
+ 
+
+UF’s main portal for cloud-based resources
+
+The UF Web-based cloud portal is available to faculty and staff and includes a host of productivity and collaboration tools and services.  A Web browser and a connection to the Internet are the only requirements. The product in this category can be used on a Windows-based PC, Macintosh, and smartphones (via a mobile app).  More detailed information can be found on the product’s service page.
+
+GatorCloud – UF's Home for Collaboration Services.  Inside GatorCloud you will find links for checking UF email, Microsoft Office 365 (OneDrive, Word, Excel, and Teams), Google’s G Suite (Drive, Docs, Sheets, Slides, Forms, Calendar, and Hangouts), and Dropbox.
+
+ 
+
+Connect remotely to your files, computer or other resources on the UF network
+
+If you are working from home or elsewhere off-campus, you should use an approved, secure virtual private network (VPN) to connect to your files, work computer or systems and other resources on the UF network.  A VPN is an application on your device that establishes a secure connection to a network. To connect to campus resources, you can download and install the Gatorlink VPN and the only other requirement is being connected to the Internet.  The product in this category can be used on a Windows-based PC, Macintosh, and smartphones (via a mobile app). More detailed information can be found on the product’s service page.
+
+Gatorlink VPN – The Gatorlink VPN service provides secure remote access to the University of Florida network and makes it appear as if your computer were physically attached to the campus network. By using the Gatorlink VPN client, you may access resources on the UF network that are not typically available over an Internet path.  These services may include file shares, private IP addressed systems, UF Library Journals, Software Licensing Services, the Remote Desktop.
+
+When working off-campus, UFIT recommends using the /campus switch with the VPN to segment UF related network traffic from general internet traffic coming and going from your computer:
+
+e.g. albert.gator@ufl.edu/campus
+
+ 
+
+Continued productivity with virtualized applications
+
+Virtualized applications leverage several cutting-edge technologies to provide UF students and faculty access to Windows-based software applications from any computing device–laptops, tablets, desktops, and smartphones–from any location, at any time.  The only requirement is being connected to the Internet. The product in this category can be used on a Windows-based PC, Macintosh, and smartphones via a Web browser. More detailed information can be found on the product’s service page.
+
+UFApps – UFApps provides students and faculty access to software applications from any computing device, from any location, at any time.  These are all the Published applications.  This service is for students and faculty only.
+
+ 
+
+Download the Microsoft Office suite to your personal computer
+
+UF and Microsoft have an agreement where the Office suite can be installed on faculty and staff-owned computers, and smart phones and tablets (iOS, Android).  The requirements are you must be faculty or staff at UF, the software has to be installed only on devices you own, you must remove the software should you leave UF, and you will need to be connected to the Internet to initiate the download, install, and activation of the software (one time process).  The product in this category can be used on a Windows-based PC, Macintosh, and smartphones (via a mobile app). More detailed information can be found on the product’s service page.
+
+Microsoft Office 365 – install the Microsoft Office suite to your personal computer and smart phone.  Includes Word, Excel, PowerPoint, Access, Publisher, Outlook, and OneNote.
+
+University of Florida Information Technology
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Contact
+
+University of Florida
+Gainesville, FL 32611
+
+ 
+
+Website Feedback
+
+ 
+
+helpdesk@ufl.edu
+
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

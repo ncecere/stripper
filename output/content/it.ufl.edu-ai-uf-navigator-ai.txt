@@ -1,0 +1,181 @@
+Skip to main content
+UFIT Artificial Intelligence
+School Logo Link
+MENU
+
+NaviGator Chat
+
+
+
+NaviGator AI allows you to use different Large Language Models (LLMs) with your own dataset. You can use AI to discover trends and patterns, look for insights, and produce reports based on your data.
+
+Launch NaviGator Chat
+ 
+NaviGator Chat Getting Started
+
+Security, Privacy, Data Classification Usage Guidelines
+
+UF provides this service to allow you to analyze your documents using different language models while keeping those documents secure within UF servers and contracted vendors.  At this time, UF does not permit the usage of restricted or sensitive data with this service. Users only have access to their own datasets and conversation history. When interacting with the language models hosted by vendors, your messages and subsets of your documents will be sent to a LLM instance provided by Microsoft or Google.  All data handled in this fashion is covered by our existing agreements with Microsoft and Google.  None of this data contributes to training the large language model. No data is retained after deletion.  If you have uploaded a file by accident, deleting the file or conversation will completely remove it from the system. 
+
+Available Language Models 
+Language Models and Hosting
+UF HiPerGator	Microsoft Azure	Google	Amazon Web Services
+
+llama-3.1-8b-instruct
+nim-llama-3.1-8b-instruct
+llama-3.1-70b-instruct
+mistral-7b-instruct
+nim-mistral-7b-instruct
+mixtral-8x7b-instruct
+mistral-large
+codestral-22b
+Stable Diffusion (image generator)
+	
+gpt-4o
+gpt-4o-mini
+gpt-4-turbo
+gpt-3.5-turbo
+DALL-E-3 (image generator)
+	
+gemini-1.5-flash
+gemini-1.5-pro
+	
+command-r-plus
+command-r
+claude-3.5-sonnet
+claude-3.5-haiku
+claude-3-haiku
+claude-3-sonnet
+claude-3-opus
+Language model preset parameters
+
+Parameter 
+
+	
+
+Description 
+
+
+
+
+Model 
+
+	
+
+Select the model like gpt-3.5-turbo that will be used for generating responses 
+
+
+
+
+Custom Name 
+
+	
+
+Optionally provide a custom name for your preset. This is the name that will be shown in the UI when using it 
+
+
+
+
+Custom Instructions 
+
+	
+
+Define instructions or guidelines that will be displayed before each prompt to guide the user in providing input 
+
+
+
+
+Temperature 
+
+	
+
+Adjust this parameter to control the randomness of the model’s output. A higher value makes the output more random, while a lower value makes it more focused and deterministic 
+
+
+
+
+Top P 
+
+	
+
+Control the nucleus sampling parameter to influence the diversity of generated text. Lower values make text more focused while higher values increase diversity 
+
+
+
+
+Frequency Penalty 
+
+	
+
+Use this setting to penalize frequently occurring tokens and promote diversity in responses 
+
+
+
+
+Presence Penalty 
+
+	
+
+Adjust this parameter to penalize new tokens that are introduced into responses, controlling repetition and promoting consistency 
+
+Enable Image Generation in NaviGator Chat
+On the NaviGator toolbar, click “NaviGator AI” and select “Plugins”. 
+
+
+
+
+
+On the new menu item “None selected”, click “Plugin Store”. 
+
+
+
+
+
+Within the Plugin store, click “Install” for DALL-E-3 and/or Stable Diffusion to install image generators.
+
+
+
+
+
+After installation, select the image generator plug-in you wish to use from the Plugin store dropdown menu.
+
+
+
+
+
+You can start generating images by typing your prompts! 
+
+
+ 
+
+NaviGator Chat User Guide
+
+Comprehensive user guide on features and usage for UF NaviGator Chat.
+
+ 
+
+Department Logo
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

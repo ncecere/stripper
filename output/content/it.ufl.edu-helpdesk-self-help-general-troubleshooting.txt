@@ -1,0 +1,77 @@
+Skip to main content
+UF Information Technology
+School Logo Link
+MENU
+Help Desk
+it.ufl.edu
+Help Desk
+Self-Help
+General Troubleshooting
+GENERAL TROUBLESHOOTING
+
+Menu
+Updating Your Password in Mobile Devices
+
+Changes made to your GatorLink password will require devices previously configured to connect to the eduroam wireless network and mail clients configured to connect to GatorMail to be re-configured using the updated password:
+
+UF Wireless Password Help
+
+To update your UF wireless network password, connect to the ufgetonline network, open a browser, and navigate to UF's Wireless Onboarding.
+For general eduroam information and troubleshooting see: Connectivity Issues
+
+GatorMail Email Passwords
+
+For updating your password in Office 365 or for your GatorMail inbox, please visit the GatorMail website.
+
+ 
+
+Web Browser Troubleshooting
+How to clear your browser’s cache and cookies:
+Firefox
+Google Chrome
+Microsoft Edge
+Safari (macOS)
+Safari (iOS)
+Browser	OS	Minimum Required Version
+Apple Safari	macOS	14.X
+Apple Safari	iOS	12.X
+Google Chrome	Windows	89.X
+Google Chrome	Android	9.X
+Microsoft Edge {Legacy)	 	42.17134, 42.18632
+Microsoft Edge	Chromium	79.X
+Mozilla Firefox	 	60.X ESR
+
+ 
+
+University of Florida Information Technology
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Contact
+
+University of Florida
+Gainesville, FL 32611
+
+helpdesk@ufl.edu
+
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

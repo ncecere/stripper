@@ -1,0 +1,110 @@
+Skip to main content
+UFIT Artificial Intelligence
+School Logo Link
+MENU
+
+NaviGator Toolkit
+
+
+
+UFIT offers a set of AI tools to allow custom and SaaS applications to utilize large language models such as GPT, Llama, Gemini, and Claude. Additionally, image generation models like DALL-E and speech to text models like Whisper are also available.
+
+Access NaviGator Toolkit
+NaviGator Toolkit Guide
+
+NaviGator Toolkit provides every UF student, faculty, and staff the capability to generate API keys and leverage AI models in their current applications. Each UF user has a $5 monthly budget that they can spend on locally deployed models such as Llama, Mixtral, Gemma, Codestral, Stable Diffusion, and Mistral. Additionally, researchers can be onboarded as teams with custom budgets to leverage cloud models. Researchers are encouraged to submit a request via the UFIT Help Portal.
+
+Security, Privacy, Data Classification Usage Guidelines
+
+UF provides this service to allow you to analyze your documents using different language models while keeping those documents secure within UF servers and contracted vendors.  At this time, UF permits the usage of restricted or sensitive data with models deployed on UF HiPerGator. The usage of restricted or sensitive data is not permitted with cloud models. Users only have access to their own datasets and conversation history. When interacting with models hosted by vendors, your messages and subsets of your documents will be sent to a LLM instance provided by Microsoft, Amazon, or Google.  All data handled in this fashion is covered by our existing agreements with Microsoft. Amazon, and Google.  None of this data contributes to training the large language model. 
+
+ 
+
+Available AI Models 
+Language Models and Hosting
+UF HiPerGator	Microsoft Azure	Google	Amazon Web Services
+
+llama-3.1-8b-instruct
+nim-llama-3.1-8b-instruct
+llama-3.1-70b-instruct
+mistral-7b-instruct
+nim-mistral-7b-instruct
+mixtral-8x7b-instruct
+mistral-large
+codestral-22b
+Stable Diffusion (image generator)
+flux.1-dev (image generator)
+flux.1-schnell (image generator)
+whisper-large-v3 (speech to text)
+nomic-embed-text-v1.5
+sfr-embedding-mistral
+	
+o1-preview
+o1-mini
+gpt-4o
+gpt-4o-mini
+gpt-4-turbo
+gpt-3.5-turbo
+DALL-E-3 (image generator)
+text-embedding-3-large
+text-embedding-3-small
+	
+gemini-1.5-flash
+gemini-1.5-pro
+	
+command-r-plus
+command-r
+claude-3.5-sonnet
+claude-3.5-haiku
+claude-3-haiku
+claude-3-sonnet
+claude-3-opus
+ 
+Generate a personal API key in NaviGator Toolkit
+
+
+Each UF student, faculty, and staff can generate their own API keys. All keys have a cumulative budget of $5 per month. The API keys allow access to all local models hosted on UF HiPerGator. By virtue of being a UF student, faculty, or staff, users are able to login and create a key using the steps below:
+
+Login to https://api.ai.it.ufl.edu/ui with your GatorLink Credentials * If you are off-campus, you have to use the UF Gatorlink VPN Service.
+One the main page, make sure the team navigator-toolkit is selected (step 1). That’s the default team for all UF students, faculty, and staff. Once the navigator-toolkit team is selected, click on Create New Key (step 2)
+
+
+Under the Create Key modal window, type a name for your key (step 1) and choose which models do you want the key to have access to (step 2). You can choose one or multiple models:
+
+
+Once you select the models and have a name for your key, click on Create Key
+
+
+A new modal window will pop up with your API key value. Make sure you copy the key by clicking on Copy API Key and save it somewhere safe. You will not be able to view the key again
+
+
+Once you copy the key, click on the X button at the top right of each modal window to exit the key creation process. You should now see your key listed under your keys.
+
+
+Personal keys have a maximum budget of $5 per month. Each month, the budget resets back to $5. There are no rollover credits for unconsumed credits. Each personal key is valid for 1 year.
+
+Department Logo
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

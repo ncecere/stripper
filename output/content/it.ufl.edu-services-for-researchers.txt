@@ -1,0 +1,113 @@
+Skip to main content
+UF Information Technology
+School Logo Link
+MENU
+
+IT SERVICES
+
+Researcher Resources
+
+
+
+As a researcher, you have access to a world of IT support and resources. Below are the most commonly used IT and research resources on campus. For more information on all available IT services, feel free to browse our service catalog.
+
+Menu
+Researcher Support
+
+The University of Florida provides a number of technology platforms in support of UF researchers.
+
+LabArchives
+The LabArchives Research Edition Notebook helps researchers manage the results of research efforts, record and document research processes and procedures, and manage digital research data in ways that increase reproducibility, efficiency, collaboration, searchability, and security. The University of Florida has purchased an enterprise license for the LabArchives Research Notebook for use by faculty, researchers, staff, graduate students, and undergraduate students in performing research activities. LabArchives is securely accessible via the internet from anywhere in the world using a web browser on any device.
+
+LabArchives is an Electronic Research Notebook on the market with multiple built-in widgets for optimal customization. It offers flexible permissions and roles for sharing notebooks, pages, and entries, even with researchers outside of UF. A timestamp and record of every user and action is created, which cannot be deleted. Additionally, it has tools that enable compliance with funding agencies’ data management requirements and is the only Electronic Research Notebook service provider that is approved for Internet2 higher education member universities.
+
+ 
+
+Overleaf
+Overleaf is an online LaTeX editor available to UF faculty, staff and students. It offers real-time collaboration, version control, hundreds of LaTeX templates, online compiling of projects to PDF format, and more.
+
+Research Computing
+
+UFIT Research Computing (RC) provides comprehensive high performance computing resources and user support for University of Florida researchers and their collaborators.
+
+HiPerGator is the University of Florida supercomputer. It is approved for data and processing of open data. To work with Protected Health Information (PHI ) or Family Educational Rights and Privacy Act (FERPA) Restricted data follow the Policies and Procedures outlined on our website. For PHI data the process requires a risk assessment.
+
+Note: Must be on campus or VPN to access the Archer App.
+
+Computing resources
+The University of Florida HiPerGator is a supercomputing cluster with more than 100,000 CPU cores, over 1700 Nvidia GPUs, and many petabytes of high performance storage. It is also equipped with the latest generation of Intel and AMD processors as well as Nvidia GPUs including the world’s most advanced AI system - the Nvidia DGX SuperPOD. In addition, there are more than 1500 software tools, frameworks, and libraries installed on HiPerGator for users to conduct research in areas such as engineering, high energy physics, chemistry, bioinformatics, social sciences, and in machine learning and deep learning.
+
+Research Computing also operates the
+HiPerGator-RV
+system for secure computing on restricted data such as export controlled and medical data. This system provides a FISMA Moderate (NIST 800-53) and NIST 800-171 compliant environment safeguarding user data.
+
+User support
+Research Computing provides professional user support on the usage of HiPerGator. This includes online help and documentation, in-person and online training, office hours for walk-in support, a user support ticket system, and in-depth research project consulting.
+
+
+To facilitate the campus-wide AI initiative, the RC AI Support Team provides AI focused services in research, teaching and learning in a variety of AI topics at different levels. Grant proposal support is also available to help researchers preparing for their grants.
+
+Researcher Support
+
+Collaboration and File Storage Services
+The University of Florida offers a variety of cloud collaboration and file storage services including the Google G Suite, Office 365, and Dropbox.
+
+Fast Path Solutions
+ Fast Path Solutions (FPS) is a comprehensive list of pre-assessed software and computing environments. Use this page to search by name or by category. If you are working with non-restricted data, you may use FPS without additional review by UF administrative, compliance, and risk management offices.
+
+Software Licensing
+Software Licensing Services (SLS) provides software licensing, distribution and management services for departments at the University of Florida.
+
+UFApps
+UFApps leverages a number of cutting edge technologies to provide UF students and faculty access to Windows based software applications from any computing device–laptops, tablets, desktops, and smartphones–from any location, at any time.
+
+LinkedIn Learning
+The Linkedin Learning platform includes all Lynda.com course content plus an additional 6,000 online skill-building education options. Furthermore, LinkedIn Learning provides personalized course recommendations based on your geographic location, job title, and interests, and the opportunity to have badges and certificate information earned via Lynda/Linkedin Learning appear on your Linkedin professional profile. The enhanced online learning platform remains free to all students, faculty, and staff with valid GatorLink credentials.
+
+UFIT Training
+UFIT Training brings technological expertise to fulfill your training needs. Our certified trainers can help you develop online, face-to-face, or hybrid training programs. We also provide technical training in R Programming, SPSS, and Qualtrics. Customized training and one-on-one consultation are also available. Contact ufit-training@ufl.edu for more information. For a list of available training visit https://training.it.ufl.edu/training/.
+
+VPN
+The Gatorlink VPN service provides secure remote access to the University of Florida network and makes it appear as if your computer were physically attached to the campus network. By using the Gatorlink VPN client, you may access resources on the UF network that are not typically available over an Internet path.
+
+Qualtrics
+Qualtrics is a robust, sophisticated service for creating and delivering web-based surveys. With over 100 question types available and the ability to create interactive questions and engage survey-takers with rich media, it becomes possible to increase response rates. Users can pull questions from professionally designed surveys as well as create their own library of questions, surveys, messages, and media.
+
+University of Florida Information Technology
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Contact
+
+University of Florida
+Gainesville, FL 32611
+
+ 
+
+Website Feedback
+
+ 
+
+helpdesk@ufl.edu
+
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only

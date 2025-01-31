@@ -1,0 +1,345 @@
+Skip to main content
+UF Information Technology
+School Logo Link
+MENU
+UFIT Services
+
+Search
+A/V Design and Installation
+TEACHING AND LEARNING
+Access Management
+INFRASTRUCTURE
+AI Consultation
+INFRASTRUCTURE
+Amazon Web Services (AWS)
+INFRASTRUCTURE
+Anti-Plagiarism Tool for Researchers
+RESEARCH
+Anti-Plagiarism Tool for Students and Instructors
+TEACHING AND LEARNING
+Application Management System
+ADMINISTRATIVE AND BUSINESS
+Architecture
+SECURITY
+Authentication Services
+INFRASTRUCTURE
+Authorization and Permissions
+INFRASTRUCTURE
+Backups and Archive Data Storage
+INFRASTRUCTURE
+Batch Automation
+INFRASTRUCTURE
+BeyondTrust
+END-POINT COMPUTING
+Blue Light Emergency Phones
+COMMUNICATION AND COLLABORATION
+Building Network - Wired
+INFRASTRUCTURE
+Careers at UF
+ADMINISTRATIVE AND BUSINESS
+Charged Printing Services
+END-POINT COMPUTING
+Classrooms and Learning Space Support
+TEACHING AND LEARNING
+Constituent Relationship Management System
+ADMINISTRATIVE AND BUSINESS
+Core and Data Center Network, ACLs
+INFRASTRUCTURE
+Course Management Systems
+TEACHING AND LEARNING
+CrashPlan - Workstation Cloud Backup
+END-POINT COMPUTING
+Custom Application Development
+IT PROFESSIONAL SERVICES
+Data Access Requests
+ADMINISTRATIVE AND BUSINESS
+Data Center Infrastructure
+INFRASTRUCTURE
+Digital Forensics Examinations
+SECURITY
+Digital Signage Services
+TEACHING AND LEARNING
+Directory and Phone Number Assistance
+COMMUNICATION AND COLLABORATION
+Dropbox for Education
+COMMUNICATION AND COLLABORATION
+eDiscovery
+SECURITY
+Education, Training, and Awareness
+SECURITY
+eFAX
+COMMUNICATION AND COLLABORATION
+Electronic Lab Notebook
+RESEARCH
+Electronic Thesis and Dissertation Support
+TEACHING AND LEARNING
+Emergency Notification Systems - IT Alerts
+COMMUNICATION AND COLLABORATION
+Emergency Notification Systems - UF Alert
+COMMUNICATION AND COLLABORATION
+Enterprise Analytics - Adhoc Report Request
+ADMINISTRATIVE AND BUSINESS
+Enterprise Analytics - Dashboarding
+ADMINISTRATIVE AND BUSINESS
+Enterprise Analytics - Power BI
+ADMINISTRATIVE AND BUSINESS
+Enterprise Analytics - Prompted and Delivered Reports
+ADMINISTRATIVE AND BUSINESS
+Enterprise Analytics - Report Author
+ADMINISTRATIVE AND BUSINESS
+Enterprise Database - Oracle
+INFRASTRUCTURE
+Enterprise Document Management System
+ADMINISTRATIVE AND BUSINESS
+Financial Information Tool (FIT Cube)
+ADMINISTRATIVE AND BUSINESS
+GatorCloud - Microsoft Office Online
+END-POINT COMPUTING
+GatorCloud - OneDrive @ UF
+COMMUNICATION AND COLLABORATION
+GatorCloud - UFApps
+END-POINT COMPUTING
+GatorCloud - Yammer
+COMMUNICATION AND COLLABORATION
+GatorEvals
+TEACHING AND LEARNING
+GatorMail
+COMMUNICATION AND COLLABORATION
+GO.UFL.EDU
+COMMUNICATION AND COLLABORATION
+Google Cloud Platform (GCP)
+INFRASTRUCTURE
+Google Workspace for Education
+COMMUNICATION AND COLLABORATION
+Harn Museum Support
+END-POINT COMPUTING
+Help Desk Support
+END-POINT COMPUTING
+HiPerGator
+RESEARCH
+Hosted Databases - MS SQL
+INFRASTRUCTURE
+Hosted Databases - MySQL
+INFRASTRUCTURE
+Hosted Files
+INFRASTRUCTURE
+Hosted Websites - Apache
+INFRASTRUCTURE
+Hosted Websites - IIS
+INFRASTRUCTURE
+Identity and Access Management Consulting
+INFRASTRUCTURE
+Identity Management
+INFRASTRUCTURE
+iLab
+ADMINISTRATIVE AND BUSINESS
+Incident Response
+SECURITY
+Information Security Consulting
+SECURITY
+Information Security Risk Assessment
+SECURITY
+Instructional Design and Development
+TEACHING AND LEARNING
+Instructional Video and Audio Production
+TEACHING AND LEARNING
+Investigative Support
+SECURITY
+IP Address Management, DNS, DHCP, and Host Monitoring
+INFRASTRUCTURE
+IT Training
+IT PROFESSIONAL SERVICES
+Jamf - Mac Platform Management
+END-POINT COMPUTING
+Job Monitoring and Scheduling
+INFRASTRUCTURE
+Learning Analytics
+TEACHING AND LEARNING
+Learning Tool Integration Requests
+TEACHING AND LEARNING
+LinkedIn Learning
+IT PROFESSIONAL SERVICES
+Listserv Email Lists
+COMMUNICATION AND COLLABORATION
+Managed Server Hosting
+INFRASTRUCTURE
+Mediasite Lecture Capture
+TEACHING AND LEARNING
+Mediasite Streaming Video and Desktop Recording
+COMMUNICATION AND COLLABORATION
+Microsoft Azure
+INFRASTRUCTURE
+Microsoft Defender for Endpoint
+END-POINT COMPUTING
+Microsoft Intune
+END-POINT COMPUTING
+Microsoft Teams
+COMMUNICATION AND COLLABORATION
+Mobile Application Development/Publishing
+IT PROFESSIONAL SERVICES
+Multimedia Discussions
+TEACHING AND LEARNING
+myinvestiGator
+ADMINISTRATIVE AND BUSINESS
+myIT
+IT PROFESSIONAL SERVICES
+MyMediasite Profile
+TEACHING AND LEARNING
+myRequest
+IT PROFESSIONAL SERVICES
+myTraining
+ADMINISTRATIVE AND BUSINESS
+myUFL Finance
+ADMINISTRATIVE AND BUSINESS
+myUFL Grants Suite
+ADMINISTRATIVE AND BUSINESS
+myUFL HR
+ADMINISTRATIVE AND BUSINESS
+myUFL Portal
+ADMINISTRATIVE AND BUSINESS
+myUF Marketplace
+ADMINISTRATIVE AND BUSINESS
+NaviGator Assistant
+INFRASTRUCTURE
+NaviGator Chat
+INFRASTRUCTURE
+NaviGator Toolkit
+INFRASTRUCTURE
+Network Source-of-Truth (NSoT)
+INFRASTRUCTURE
+ONE.UF
+ADMINISTRATIVE AND BUSINESS
+Online LaTeX Editor
+RESEARCH
+Online Survey Tool
+RESEARCH
+Personally-Owned Computer and Device Support
+END-POINT COMPUTING
+Policies and Standards
+SECURITY
+PrintSmart Server
+END-POINT COMPUTING
+Project Management
+IT PROFESSIONAL SERVICES
+Provost Applications and Services
+ADMINISTRATIVE AND BUSINESS
+RedHat Satellite Services
+END-POINT COMPUTING
+Research Account and Resource Management
+RESEARCH
+Research Consulting and Training
+RESEARCH
+Research Software Applications
+RESEARCH
+ResShield (FISMA)
+RESEARCH
+ResVault (HIPAA)
+RESEARCH
+Room and Event Management
+ADMINISTRATIVE AND BUSINESS
+Scanning Services
+TEACHING AND LEARNING
+SCCM - Windows Platform Management
+END-POINT COMPUTING
+Server Batch Incident
+INFRASTRUCTURE
+SharePoint Online
+COMMUNICATION AND COLLABORATION
+Software Purchasing and Distribution
+END-POINT COMPUTING
+Software Site License Management
+END-POINT COMPUTING
+SSL Certificate Management
+INFRASTRUCTURE
+Student Information System
+ADMINISTRATIVE AND BUSINESS
+Student Life Risk Assessments
+END-POINT COMPUTING
+TeamDynamix
+IT PROFESSIONAL SERVICES
+Telecom Infrastructure
+COMMUNICATION AND COLLABORATION
+Telephones, Voicemail, Call Routing
+COMMUNICATION AND COLLABORATION
+Threat Management
+SECURITY
+Trend Micro Antivirus
+END-POINT COMPUTING
+Two-Factor Authentication
+INFRASTRUCTURE
+UF-Owned Computer and Device Support
+END-POINT COMPUTING
+UFDocuSign
+ADMINISTRATIVE AND BUSINESS
+UF GO
+ADMINISTRATIVE AND BUSINESS
+UFIRST
+ADMINISTRATIVE AND BUSINESS
+UF Mobile App
+END-POINT COMPUTING
+UFOLIO
+ADMINISTRATIVE AND BUSINESS
+UF OneLake
+ADMINISTRATIVE AND BUSINESS
+Unit Print and Scan Services
+END-POINT COMPUTING
+Video Captioning for Accessibility
+TEACHING AND LEARNING
+Videoconferencing
+COMMUNICATION AND COLLABORATION
+Virtual Machine Hosting
+INFRASTRUCTURE
+VPN
+INFRASTRUCTURE
+Vulnerability Management
+SECURITY
+Web Content Management System
+COMMUNICATION AND COLLABORATION
+Website Design and Development
+IT PROFESSIONAL SERVICES
+Web Support and Editing
+COMMUNICATION AND COLLABORATION
+Wireless Network
+INFRASTRUCTURE
+Zoom
+COMMUNICATION AND COLLABORATION
+Zoom for Government
+TEACHING AND LEARNING
+University of Florida Information Technology
+Facebook Icon
+Twitter Icon
+Instagram Icon
+Youtube Icon
+LinkedIn Icon
+Contact
+
+University of Florida
+Gainesville, FL 32611
+
+ 
+
+Website Feedback
+
+ 
+
+helpdesk@ufl.edu
+
+Resources
+ONE.UF
+Webmail
+myUFL
+e-Learning
+Directory
+Campus
+Weather
+Campus Map
+Student Tours
+Academic Calendar
+Events
+Website
+Website Listing
+Accessibility
+Privacy Policy
+Regulations
+UF Public Records
+© 2025 University of Florida Accessibility Privacy Statement Acceptable Use Policy Text Only
