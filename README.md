@@ -16,27 +16,64 @@ A powerful web content crawler that uses the Reader API to extract clean, readab
 
 ### Using Pre-built Binaries
 
+#### Linux (x86_64)
+```bash
+# Download latest release
+curl -LO $(curl -s https://api.github.com/repos/ncecere/stripper/releases/latest | grep -o -E "https://.*stripper_Linux_x86_64.tar.gz")
+
+# Extract binary
+tar xzf stripper_Linux_x86_64.tar.gz
+
+# Make binary executable and move to PATH
+chmod +x stripper
+sudo mv stripper /usr/local/bin/
+
+# Verify installation
+stripper --version
+```
+
+#### macOS (Intel/M1)
+```bash
+# For Intel Macs (x86_64)
+curl -LO $(curl -s https://api.github.com/repos/ncecere/stripper/releases/latest | grep -o -E "https://.*stripper_Darwin_x86_64.tar.gz")
+tar xzf stripper_Darwin_x86_64.tar.gz
+
+# For M1/M2 Macs (arm64)
+curl -LO $(curl -s https://api.github.com/repos/ncecere/stripper/releases/latest | grep -o -E "https://.*stripper_Darwin_arm64.tar.gz")
+tar xzf stripper_Darwin_arm64.tar.gz
+
+# Make binary executable and move to PATH
+chmod +x stripper
+sudo mv stripper /usr/local/bin/
+
+# Verify installation
+stripper --version
+```
+
+#### Windows (PowerShell)
+```powershell
+# Download latest release
+$release = Invoke-RestMethod -Uri "https://api.github.com/repos/ncecere/stripper/releases/latest"
+$url = $release.assets | Where-Object { $_.name -like "*Windows_x86_64.zip" } | Select-Object -ExpandProperty browser_download_url
+Invoke-WebRequest -Uri $url -OutFile "stripper_Windows_x86_64.zip"
+
+# Extract binary
+Expand-Archive -Path "stripper_Windows_x86_64.zip" -DestinationPath "."
+
+# Move to PATH (requires Administrator)
+Move-Item -Path "stripper.exe" -Destination "C:\Windows\System32\"
+
+# Verify installation
+stripper --version
+```
+
+#### Manual Download
 1. Visit the [Releases](https://github.com/ncecere/stripper/releases) page
 2. Download the appropriate binary for your system:
    - Linux: `stripper_Linux_x86_64.tar.gz` or `stripper_Linux_arm64.tar.gz`
    - macOS: `stripper_Darwin_x86_64.tar.gz` or `stripper_Darwin_arm64.tar.gz`
    - Windows: `stripper_Windows_x86_64.zip`
-3. Extract the archive:
-   ```bash
-   # Linux/macOS
-   tar xzf stripper_*_*.tar.gz
-   
-   # Windows (using PowerShell)
-   Expand-Archive stripper_Windows_x86_64.zip
-   ```
-4. Move the binary to your PATH:
-   ```bash
-   # Linux/macOS
-   sudo mv stripper /usr/local/bin/
-
-   # Windows (using PowerShell as Administrator)
-   Move-Item stripper.exe C:\Windows\System32\
-   ```
+3. Extract and install manually using the commands shown above
 
 ### Using Go Install
 
